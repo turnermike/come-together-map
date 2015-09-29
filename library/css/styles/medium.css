@@ -1,0 +1,18 @@
+/* ==========================================================================
+   Medium Stylesheet (640 - 1024)
+   ========================================================================== */
+/* ==========================================================================
+   Debug Styles
+   ========================================================================== */
+/* line 14, ../../scss/styles/medium.scss */
+#debug-message {
+  background: lightblue;
+}
+/* line 16, ../../scss/styles/medium.scss */
+#debug-message .small, #debug-message .large, #debug-message .exlarge {
+  display: none;
+}
+/* line 19, ../../scss/styles/medium.scss */
+#debug-message .medium {
+  display: block;
+}

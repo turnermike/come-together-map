@@ -1,0 +1,31 @@
+# ignore all instances of the following
+*.DS_Store
+error_log
+*/error_log/*
+
+# SASS
+**/.sass-cache
+**/.sass-cache/*
+
+# Wordpress
+wp-content/debug.log
+
+# CodeIgniter
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project

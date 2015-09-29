@@ -1,0 +1,23 @@
+/* ==========================================================================
+   Large Stylesheet (1024 - 1440)
+   ========================================================================== */
+/* line 4, ../../scss/styles/large.scss */
+body {
+  background: pink;
+}
+
+/* ==========================================================================
+   Debug Styles
+   ========================================================================== */
+/* line 14, ../../scss/styles/large.scss */
+#debug-message {
+  background: lightgreen;
+}
+/* line 16, ../../scss/styles/large.scss */
+#debug-message .small, #debug-message .medium, #debug-message .exlarge {
+  display: none;
+}
+/* line 19, ../../scss/styles/large.scss */
+#debug-message .large {
+  display: block;
+}

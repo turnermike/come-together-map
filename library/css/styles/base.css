@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Base Stylesheet (0 - 640)
+   ========================================================================== */
+/* line 5, ../../scss/styles/base.scss */
+body {
+  background: orange;
+}
+
+/* ==========================================================================
+ Debug Styles
+ ========================================================================== */
+/* line 15, ../../scss/styles/base.scss */
+#debug-message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 10px;
+  width: auto;
+  height: auto;
+  font-size: 12px;
+  color: #fff;
+  background: pink;
+}
+/* line 26, ../../scss/styles/base.scss */
+#debug-message p {
+  margin: 0;
+}
+/* line 29, ../../scss/styles/base.scss */
+#debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
+  display: none;
+}
+/* line 32, ../../scss/styles/base.scss */
+#debug-message .small {
+  display: block;
+}
