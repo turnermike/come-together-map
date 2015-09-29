@@ -68,20 +68,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-    <h1><?php echo $copy['home_h1']; ?></h1>
+    <h1>Come Together</h1>
     <p>deployment test</p>
 
     <div id="body">
-
-        <h2><?php echo $copy['home_h2']; ?></h2>
-        <p><?php echo $copy['home_p1']; ?></p>
-
-        <?php
-            echo '<br><br>SESSION: ';
-            echo "<pre>";
-            var_dump($_SESSION);
-            echo "</pre>";
-        ?>
 
         <?php
             echo "<br>ENVIRONMENT: " . ENVIRONMENT;

@@ -60,11 +60,11 @@
 	$environment = 'production';
 
 	// check for development
-	$result = preg_match('/ci-fb-bootstrap.dev/', $server, $matches);
+	$result = preg_match('/cometogether.dev/', $server, $matches);
 	if($result > 0) $environment = 'development';
 
 	// check for staging
-	$result = preg_match('/staging-domain.ca/', $server, $matches);
+	$result = preg_match('/cometogether.ristaging.ca/', $server, $matches);
 	if($result > 0) $environment = 'staging';
 
 	// check for production
@@ -120,7 +120,7 @@ switch (ENVIRONMENT)
  * Include the path if the folder is not in the same directory
  * as this file.
  */
-	$system_path = 'system';
+	$system_path = 'ct_system';
 
 /*
  *---------------------------------------------------------------
@@ -135,7 +135,7 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
+	$application_folder = 'ct_application';
 
 /*
  *---------------------------------------------------------------
