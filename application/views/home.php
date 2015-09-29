@@ -69,6 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
     <h1><?php echo $copy['home_h1']; ?></h1>
+    <p>deployment test</p>
 
     <div id="body">
 
