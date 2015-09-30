@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div id="container">
     <h1>Come Together</h1>
-    <p>deployment test</p>
+
 
     <div id="body">
 
