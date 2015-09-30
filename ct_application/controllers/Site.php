@@ -22,9 +22,9 @@ class Site extends CI_Controller {
         $this->load->model('site_model');
         $tweets = $this->site_model->get_tweets_central();
 
-        echo "<pre>";
-        var_dump($tweets);
-        echo "</pre>";
+        // echo "<pre>";
+        // var_dump($tweets);
+        // echo "</pre>";
 
     }
 
