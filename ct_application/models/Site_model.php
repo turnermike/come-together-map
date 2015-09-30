@@ -12,7 +12,7 @@ class Site_model extends CI_Model{
             'consumer_key' => "6eQOA1iexKYtkKSYnLSm9vJyj",
             'consumer_secret' => "cyGAvdIAhg24nF4SiPZn3dN5YveMBd9Ma4q8R83zSNK6xkqfsQ"
         );
-        $this->load->library('twitterapiexchange', $settings);
+        $this->load->library('TwitterAPIExchange', $settings);
 
         return 'return stuff here';
 
