@@ -106,42 +106,25 @@ class Site_model extends CI_Model{
             if(strtoupper($value->place->country_code) === "CA"){
 
                 // make sure the tweet hasn't already been added to db
-                $sql = "SELECT * FROM tweets WHERE tweet_id = '" . $value->id . "'";
-                $result = $conn->query($sql);
+                // $sql = "SELECT * FROM tweets WHERE tweet_id = '" . $value->id . "'";
+                // $result = $conn->query($sql);
+                $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
 
-                if($result->num_rows <= 0){
+
+
+                if($query->num_rows() <= 0){
                     // no existing records
-
-                    // // insert database record
-                    // $sql = "INSERT INTO tweets "
-                    //     . "(user_screen_name, user_full_name, user_id, user_location, geo_latitude, geo_longitude, "
-                    //     . "place_name, place_full_name, place_country, tweet_id, tweet_text, tweet_date, date_added) "
-                    //     . "VALUES ('"
-                    //     . $conn->real_escape_string($value->user->screen_name) . "', '"
-                    //     . $conn->real_escape_string($value->user->name) . "', '"
-                    //     . $conn->real_escape_string($value->user->id) . "', '"
-                    //     . $conn->real_escape_string($value->user->location) . "', '"
-                    //     . $conn->real_escape_string($value->geo->coordinates[0]) . "', '"
-                    //     . $conn->real_escape_string($value->geo->coordinates[1]) . "', '"
-                    //     . $conn->real_escape_string($value->place->name) . "', '"
-                    //     . $conn->real_escape_string($value->place->full_name) . "', '"
-                    //     . $conn->real_escape_string($value->place->country) . "', '"
-                    //     . $value->id_str . "', '"
-                    //     . $conn->real_escape_string($value->text) . "', '"
-                    //     . $conn->real_escape_string($value->created_at) . "', '"
-                    //     . date('Y-m-d H:i:s')
-                    //     . "')";
 
                     $data = array(
                         'user_screen_name'      => $this->db->escape_str($value->user->screen_name),
                         'user_full_name'      => $this->db->escape_str($value->user->name),
                         'user_id'      => $this->db->escape_str($value->user->id),
                         'user_location'      => $this->db->escape_str($value->user->location),
-                        'geo_latitude'      => $this->db->escape_str($value->coordinates[0]),
-                        'geo_longitude'      => $this->db->escape_str($value->coordinates[1]),
-                        'place_name'      => $this->db->escape_str($value->name),
-                        'place_full_name'      => $this->db->escape_str($value->full_name),
-                        'place_country'      => $this->db->escape_str($value->country),
+                        'geo_latitude'      => $this->db->escape_str($value->geo->coordinates[0]),
+                        'geo_longitude'      => $this->db->escape_str($value->geo->coordinates[1]),
+                        'place_name'      => $this->db->escape_str($value->place->name),
+                        'place_full_name'      => $this->db->escape_str($value->place->full_name),
+                        'place_country'      => $this->db->escape_str($value->place->country),
                         'tweet_id'      => $value->id_str,
                         'tweet_text'      => $this->db->escape_str($value->text),
                         'tweet_date'      => $this->db->escape_str($value->created_at),
@@ -150,12 +133,13 @@ class Site_model extends CI_Model{
 
 
 
-                    if($conn->query($sql) === TRUE){
-                        echo " | Success: " . $conn->affected_rows . '<br>';
-                        $total++;
-                    }else{
-                        echo " | Error: " . $conn->error . '<br>';
-                    }
+
+                    // if($conn->query($sql) === TRUE){
+                    //     echo " | Success: " . $conn->affected_rows . '<br>';
+                    //     $total++;
+                    // }else{
+                    //     echo " | Error: " . $conn->error . '<br>';
+                    // }
                 }
 
             } // if($value->place->country_code === "CA"){
