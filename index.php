@@ -71,7 +71,7 @@
 	$result = preg_match('/production-domain.ca/', $server, $matches);
 	if($result > 0) $environment = 'production';
 
-	echo 'env: ' . $environment;
+	// echo 'env: ' . $environment;
 
 	// set the global variable
 	define('ENVIRONMENT', $environment);
