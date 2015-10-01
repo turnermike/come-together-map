@@ -1,11 +1,9 @@
 /*jslint browser: true */
-/*global $, jQuery, alert, console, Foundation5Boilerplate:true */
+/*global $, jQuery, alert, console, ComeTogether:true */
 
 var console = console || { log: function() { 'use strict'; } };
 
-
-
-window.Foundation5Boilerplate = window.Foundation5Boilerplate || {};
+window.ComeTogether = window.ComeTogether || {};
 
 (function (s) {
 
@@ -29,77 +27,116 @@ window.Foundation5Boilerplate = window.Foundation5Boilerplate || {};
                 if (this.initalized) { return false; }
                 this.initialized = true;
 
-                //dom elements
+                // dom elements
                 this.elements.body =  $('body', 'html');
                 this.elements.debug = $('#txtDebug', this.elements.body);
-                // this.elements.currentYear = $('.current-year', this.elements.footer);
 
-                //configure debug based on config file
+                // configure debug based on config file
                 if (this.elements.debug.val()) {
                     this.settings.debug = true;
                     this.initDebug();
                 }
 
-                //initialize foundation
+                // initialize foundation
                 $(document).foundation();
 
-                // //populate current year for copyrite in footer
-                // var d = new Date();
-                // this.elements.currentYear.html(d.getFullYear());
+                // initialize map
+                this.initMap();
 
 
             },
 
-            // initInPageAnchors: function () {
+            initMap: function() {
 
-            //     if (this.settings.debug) { console.log('initInPageAnchors()'); }
+                if(this.settings.debug){ console.log('initMap()'); };
 
-            //     var dest = 0;
+                L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
-            //     $(this.elements.anchorLinks).click(function (e) {
-            //         e.preventDefault();
-            //         dest = $(this.hash).offset().top;
-            //         $('html, body').animate({
-            //             scrollTop: dest - 100
-            //         }, 2000, 'swing');
-            //     });
+                var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
+
+                // var map = L.map('map', 'leatherface416.njcm6oc3')
+                // .setView([52.514457, -99.546737], 4);
+                // baseLayer.addTo(map);
+
+                // define the cluster layer
+                var markers = L.markerClusterGroup({
+                    showCoverageOnHover: false,
+                    removeOutsideVisibleBounds: true,
+                    singleMarkerMode: true,
+                    iconCreateFunction: function (cluster) {
+                        var markers = cluster.getAllChildMarkers();
+                        var n = 0;
+                        for (var i = 0; i < markers.length; i++) {
+                            n += markers[i].number;
+                        }
+                        return L.divIcon({ html: cluster.getChildCount(), className: 'mycluster', iconSize: L.point(40, 40) });
+                    }
+                    // iconCreateFunction: function(cluster){
+                    //     return new L.DivIcon({ html: '<strong>' + cluster.getChildCount() + '</strong>' });
+                    // }
+                });
+
+                // call the geojson
+                $.getJSON("site/populate_map_tweets", function(data) {
+
+                    console.log('geojson', data);
+
+                    var geojson = L.geoJson(data, {
+                        onEachFeature: function (feature, layer) {
+                        // use a custom marker
+                        layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
+
+                        // add a popup with a chart
+                        var $popupHTML = '<h1>' + layer.feature.properties.title + '</h1>'
+                                    + '<p>' + layer.feature.properties.desc + '</h1>';
+                        layer.bindPopup($popupHTML);
+
+                        }
+                    });
+                    markers.addLayer(geojson);
+
+                    // construct the map
+                    // // example of passing options
+                    // var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
+                    // // set the view outter boundries to the available markers
+                    // var map = L.map('map').fitBounds(markers.getBounds());
+
+
+                    var map = L.map('map', 'leatherface416.njcm6oc3')
+                    .setView([52.514457, -99.546737], 4);
+                    baseLayer.addTo(map);
+                    markers.addTo(map);
+
+                });
 
 
 
 
-            // },
 
-            // initScrollEvents: function () {
 
-            //     if (this.settings.debug) { console.log('initScrollEvents()'); }
 
-            //     var THIS = this;
 
-            //     $(window).scroll(function () {
-            //         if ($(this).scrollTop() > 0) {
-            //             THIS.elements.tabBar.addClass('shadow');
-            //         } else {
-            //             THIS.elements.tabBar.removeClass('shadow');
-            //         }
-            //     });
 
-            // },
 
-            // initResizeEvents: function () {
 
-            //     if (this.settings.debug) { console.log('initResizeEvents()'); }
 
-            //     var go,
-            //         THIS = this;
 
-            //     $(window).resize(function () {
-            //         clearTimeout(go);
-            //         go = setTimeout(function () {
-            //             //finished resizing, do something
 
-            //         }, 100);
-            //     });
-            // },
+
+
+
+
+
+
+
+
+
+
+
+
+
+            },
+
 
             initDebug: function () {
 
@@ -119,13 +156,13 @@ window.Foundation5Boilerplate = window.Foundation5Boilerplate || {};
 
     };
 
-}(Foundation5Boilerplate));
+}(ComeTogether));
 
 
 
 $(document).ready(function() {
     'use strict';
-    Foundation5Boilerplate.App().init();
+    ComeTogether.App().init();
 });
 
 

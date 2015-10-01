@@ -38,6 +38,14 @@ class Site extends CI_Controller {
 
     }
 
+    public function populate_map_tweets(){
+
+        $this->load->model('site_model');
+        $tweets = $this->site_model->populate_map_tweets();
+        echo json_encode($tweets);
+
+    }
+
 
 
 }

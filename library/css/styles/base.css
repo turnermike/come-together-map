@@ -3,13 +3,35 @@
    ========================================================================== */
 /* line 5, ../../scss/styles/base.scss */
 body {
+  margin: 0;
+  padding: 0;
   background: orange;
+}
+
+/* line 11, ../../scss/styles/base.scss */
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 19, ../../scss/styles/base.scss */
+.mycluster {
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background-color: greenyellow;
+  text-align: center;
+  font-size: 24px;
 }
 
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 15, ../../scss/styles/base.scss */
+/* line 33, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -22,15 +44,15 @@ body {
   color: #fff;
   background: pink;
 }
-/* line 26, ../../scss/styles/base.scss */
+/* line 44, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 29, ../../scss/styles/base.scss */
+/* line 47, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 32, ../../scss/styles/base.scss */
+/* line 50, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

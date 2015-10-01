@@ -1,95 +1,43 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Home</title>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <!--
+    <link rel="apple-touch-icon" href="apple-touch-icon-57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144.png" />
+    <link rel="icon" href="library/images/favicon.ico">
+    -->
+    <title>#ComeTogether Canada</title>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+    <link rel="stylesheet" href="library/css/app.css" />
 
-    <style type="text/css">
+  </head>
 
-    ::selection { background-color: #E13300; color: white; }
-    ::-moz-selection { background-color: #E13300; color: white; }
+    <!--[if IE ]>
+       <body class="ie">
+    <![endif]-->
+    <!--[if !IE]>-->
+       <body>
+    <!--<![endif]-->
 
-    body {
-        background-color: #fff;
-        margin: 40px;
-        font: 13px/20px normal Helvetica, Arial, sans-serif;
-        color: #4F5155;
-    }
+    <div id="map"></div>
 
-    a {
-        color: #003399;
-        background-color: transparent;
-        font-weight: normal;
-    }
+    <input type="hidden" id="txtDebug" name="txtDebug" value="true" />
 
-    h1 {
-        color: #444;
-        background-color: transparent;
-        border-bottom: 1px solid #D0D0D0;
-        font-size: 19px;
-        font-weight: normal;
-        margin: 0 0 14px 0;
-        padding: 14px 15px 10px 15px;
-    }
-
-    code {
-        font-family: Consolas, Monaco, Courier New, Courier, monospace;
-        font-size: 12px;
-        background-color: #f9f9f9;
-        border: 1px solid #D0D0D0;
-        color: #002166;
-        display: block;
-        margin: 14px 0 14px 0;
-        padding: 12px 10px 12px 10px;
-    }
-
-    #body {
-        margin: 0 15px 0 15px;
-    }
-
-    p.footer {
-        text-align: right;
-        font-size: 11px;
-        border-top: 1px solid #D0D0D0;
-        line-height: 32px;
-        padding: 0 10px 0 10px;
-        margin: 20px 0 0 0;
-    }
-
-    #container {
-        margin: 10px;
-        border: 1px solid #D0D0D0;
-        box-shadow: 0 0 8px #D0D0D0;
-    }
-    </style>
-</head>
-<body>
-
-<div id="container">
-    <h1>Come Together</h1>
-
-
-    <div id="body">
-
-        <?php
-            echo "<br>ENVIRONMENT: " . ENVIRONMENT;
-            echo "<br>Site URL: " . $this->config->site_url();
-            echo "<br>Base URL: " . $this->config->base_url();
-            echo "<br>System URL: " . $this->config->system_url();
-        ?>
-
-
-    </div>
-
-    <p class="footer">
-        <a href='<?php echo base_url(); ?>LangToggle/switch_language/english?returnUrl=<?php echo uri_string(); ?>'>English</a>
-        <a href='<?php echo base_url(); ?>LangToggle/switch_language/french?returnUrl=<?php echo uri_string(); ?>'>French</a>
-        Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>
-    </p>
-
-</div>
+    <script src="library/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="library/bower_components/foundation/js/foundation.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+    <script src="library/js/app.js"></script>
 
 </body>
 </html>

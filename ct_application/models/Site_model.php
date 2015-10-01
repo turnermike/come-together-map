@@ -4,6 +4,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Site_model extends CI_Model{
 
 
+    function populate_map_tweets(){
+
+        $query = $this->db->get('tweets');
+
+        if($query->num_rows()){
+            // all good
+
+            $geo_json = array();
+            $total = 0;
+
+            foreach($query->result() as $key => $value){
+
+                // echo "<pre>";
+                // var_dump($value);
+                // echo "</pre>";
+                // echo "No. " . $total;
+
+                $marker = array(
+                    'type' => 'Feature',
+                    'geometry' => array(
+                                        'type' => 'Point',
+                                        'coordinates' => array($value->geo_longitude, $value->geo_latitude)
+                    ),
+                    'properties' => array(
+                        'title' => $value->user_screen_name,
+                        'desc' => $value->tweet_text,
+                        'marker-color' => '#548cba',
+                        'marker-size' => 'small',
+                        'marker-symbol' => 'ferry'
+                    )
+                );
+
+                array_push($geo_json, $marker);
+
+                $total++;
+
+            }
+
+            // $result = array('success' => true, 'data' => $geo_json);
+            return $geo_json;
+
+        }else{
+
+            $result = array('success' => false, 'message' => $this->db->error());
+            return $result;
+
+        }
+
+        // return $result;
+
+    }
+
+
     function get_tweets_west(){
 
         // load twitter library
