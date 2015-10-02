@@ -93,12 +93,12 @@ class Site_model extends CI_Model{
             // var_dump($row->val);
             // echo "</pre>";
 
-            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,1000km';
+            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
 
 
         }else{
             // first run
-            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,1000km';
+            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
         }
 
         // Perform the request
@@ -239,6 +239,21 @@ class Site_model extends CI_Model{
         return $result_obj;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -278,12 +293,12 @@ class Site_model extends CI_Model{
             // var_dump($row->val);
             // echo "</pre>";
 
-            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.759246,-91.328963,2000km';
+            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.759246,-91.328963,3500km';
 
 
         }else{
             // first run
-            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.759246,-91.328963,2000km';
+            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.759246,-91.328963,3500km';
         }
 
         // Perform the request
@@ -294,6 +309,9 @@ class Site_model extends CI_Model{
 
         // convert json object to php object
         $result_obj = json_decode($result);
+        // echo "<pre>";
+        // var_dump($result_obj->statuses[0]->place->country_code);
+        // echo "</pre>";
 
         // counter
         $total = 0;
@@ -334,6 +352,10 @@ class Site_model extends CI_Model{
         // loop each tweet
         foreach($result_obj->statuses as $key => $value){
 
+            // echo "<pre>";
+            // var_dump($value->place->country_code);
+            // echo "</pre>";
+
             // gather hashtags and store as a string
             $hashtags_arr = array();
             $hashtags_str = '';
@@ -360,6 +382,8 @@ class Site_model extends CI_Model{
             // echo '<br>tweet_date: ' . $value->created_at;
             // echo '<br>date_added: ' . date('Y-m-d H:i:s');
             // echo '<br>---------------------------------------- ';
+
+            echo $value->place->country_code;
 
             // if country code is canada, insert it to the database
             if(strtoupper($value->place->country_code) === "CA"){
@@ -424,6 +448,39 @@ class Site_model extends CI_Model{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function get_tweets_east(){
 
         // load twitter library
@@ -450,11 +507,11 @@ class Site_model extends CI_Model{
 
             $query = $this->db->get_where('config', array('var' => 'central_max_id'));
             $row = $query->row();
-            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.541116,-65.840683,1000km';
+            $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.541116,-65.840683,2000km';
 
         }else{
             // first run
-            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.541116,-65.840683,1000km';
+            $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=51.541116,-65.840683,2000km';
         }
 
         // Perform the request
