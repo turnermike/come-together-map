@@ -19,7 +19,6 @@ class Site_model extends CI_Model{
                 // echo "<pre>";
                 // var_dump($value);
                 // echo "</pre>";
-                // echo "No. " . $total;
 
                 $marker = array(
                     'type' => 'Feature',
@@ -57,6 +56,26 @@ class Site_model extends CI_Model{
         // return $result;
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function get_tweets_west(){
@@ -220,14 +239,15 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . __FILE__ . ' has been executed.';
+            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo '<br>Results Found: ' . count($result_obj->statuses);
+            echo '<br>Total Inserted: ' . $total;
         }
 
 
@@ -425,14 +445,15 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . __FILE__ . ' has been executed.';
+            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo '<br>Results Found: ' . count($result_obj->statuses);
+            echo '<br>Total Inserted: ' . $total;
         }
 
 
@@ -525,11 +546,11 @@ class Site_model extends CI_Model{
         // counter
         $total = 0;
 
-        // debug output
-        echo '<br>Results Found: ' . count($result_obj->statuses) . '<br>';
-        if(isset($result_obj->search_metadata->next_results)){
-            echo '<br>Next Results: ' . $result_obj->search_metadata->next_results . '<br>';
-        }
+        // // debug output
+        // echo '<br>Results Found: ' . count($result_obj->statuses) . '<br>';
+        // if(isset($result_obj->search_metadata->next_results)){
+        //     echo '<br>Next Results: ' . $result_obj->search_metadata->next_results . '<br>';
+        // }
 
         // save next results url to database so we can pull it on reload
         if(isset($result_obj->search_metadata->next_results)){
@@ -629,14 +650,15 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . __FILE__ . ' has been executed.';
+            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo '<br>Results Found: ' . count($result_obj->statuses);
+            echo '<br>Total Inserted: ' . $total;
         }
 
 
