@@ -383,7 +383,6 @@ class Site_model extends CI_Model{
             // echo '<br>date_added: ' . date('Y-m-d H:i:s');
             // echo '<br>---------------------------------------- ';
 
-            echo $value->place->country_code;
 
             // if country code is canada, insert it to the database
             if(strtoupper($value->place->country_code) === "CA"){
