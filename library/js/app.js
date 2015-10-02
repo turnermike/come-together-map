@@ -69,7 +69,8 @@ window.ComeTogether = window.ComeTogether || {};
                         for (var i = 0; i < markers.length; i++) {
                             n += markers[i].number;
                         }
-                        return L.divIcon({ html: cluster.getChildCount(), className: 'mycluster', iconSize: L.point(40, 40) });
+                        return L.divIcon({ html: cluster.getChildCount(), className: 'twitterClusterMarker', iconSize: L.point(60, 60) });
+                        // return L.mapbox.marker.icon({ 'marker-symbol': cluster.getChildCount(), 'marker-color': '#422' });
                     }
                     // iconCreateFunction: function(cluster){
                     //     return new L.DivIcon({ html: '<strong>' + cluster.getChildCount() + '</strong>' });

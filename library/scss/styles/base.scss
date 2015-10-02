@@ -16,15 +16,19 @@ body{
     height: 100%;
 }
 
-.mycluster {
-    margin:0;
-    padding: 0;
-    width: 40px;
-    height: 40px;
-    background-color: greenyellow;
-    text-align: center;
-    font-size: 24px;
+.twitterClusterMarker{
+    margin: 0;
+    padding: 23px 0 0 0;
+    width: 60px;
+    height: 60px;
+    background: url(../images/twitterClusterMarker.png);
+    background-size: 100%;
+    text-align:center;
+    font-size: 1.083em;
+    color: #fff;
+
 }
+
 
 
 /* ==========================================================================

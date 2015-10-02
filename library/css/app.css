@@ -9897,20 +9897,22 @@ body {
 }
 
 /* line 19, ../scss/styles/base.scss */
-.mycluster {
+.twitterClusterMarker {
   margin: 0;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-  background-color: greenyellow;
+  padding: 23px 0 0 0;
+  width: 60px;
+  height: 60px;
+  background: url(../images/twitterClusterMarker.png);
+  background-size: 100%;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.083em;
+  color: #fff;
 }
 
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 33, ../scss/styles/base.scss */
+/* line 37, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -9923,15 +9925,15 @@ body {
   color: #fff;
   background: pink;
 }
-/* line 44, ../scss/styles/base.scss */
+/* line 48, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 47, ../scss/styles/base.scss */
+/* line 51, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 50, ../scss/styles/base.scss */
+/* line 54, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
