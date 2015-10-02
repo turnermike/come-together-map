@@ -5,7 +5,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: orange;
+    background: #73B6E6;
 }
 
 #map{
@@ -27,6 +27,17 @@ body{
     font-size: 1.083em;
     color: #fff;
 
+}
+
+.leaflet-popup-content{
+    .image{
+        display: block;
+        margin: 0 auto;
+        border: 2px solid #55acee;
+    }
+    .screen_name{
+        text-align: center;
+    }
 }
 
 

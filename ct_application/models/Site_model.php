@@ -28,11 +28,13 @@ class Site_model extends CI_Model{
                                         'coordinates' => array($value->geo_longitude, $value->geo_latitude)
                     ),
                     'properties' => array(
-                        'title' => $value->user_screen_name,
-                        'desc' => $value->tweet_text,
-                        'marker-color' => '#548cba',
-                        'marker-size' => 'small',
-                        'marker-symbol' => 'ferry'
+                        'image' => $value->user_profile_image_url,
+                        'screen_name' => $value->user_screen_name,
+                        'tweet' => $value->tweet_text,
+                        'hashtags' => $value->tweet_hashtags,
+                        // 'marker-color' => '#548cba',
+                        // 'marker-size' => 'small',
+                        // 'marker-symbol' => 'ferry'
                     )
                 );
 
@@ -107,6 +109,9 @@ class Site_model extends CI_Model{
 
         // convert json object to php object
         $result_obj = json_decode($result);
+        // echo "<pre>";
+        // var_dump($result_obj);
+        // echo "</pre>";
 
         // counter
         $total = 0;
@@ -147,7 +152,17 @@ class Site_model extends CI_Model{
         // loop each tweet
         foreach($result_obj->statuses as $key => $value){
 
+            // gather hashtags and store as a string
+            $hashtags_arr = array();
+            $hashtags_str = '';
+            foreach($value->entities->hashtags as $hashtag){
+                array_push($hashtags_arr, '#' . $hashtag->text);
+
+            }
+            $hashtags_str = implode(', ', $hashtags_arr);
+
             // // output data
+            // echo '<br>user_profile_image_url: ' . $value->user->profile_image_url;
             // echo '<br>user_screen_name: ' . $value->user->screen_name;
             // echo '<br>user_full_name: ' . $value->user->name;
             // echo '<br>user_id: ' . $value->user->id;
@@ -158,6 +173,8 @@ class Site_model extends CI_Model{
             // echo '<br>place_full_name: ' . $value->place->full_name;
             // echo '<br>place_country: ' . $value->place->country;
             // echo '<br>tweet_id: ' . $value->id;
+            // echo '<br>tweet_text: ' . $value->text;
+            // echo '<br>hashtags: ' . $hashtags_str;
             // echo '<br>tweet_date: ' . $value->created_at;
             // echo '<br>date_added: ' . date('Y-m-d H:i:s');
             // echo '<br>---------------------------------------- ';
@@ -170,25 +187,25 @@ class Site_model extends CI_Model{
                 // $result = $conn->query($sql);
                 $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
 
-
-
                 if($query->num_rows() <= 0){
                     // no existing records
 
                     $data = array(
-                        'user_screen_name'      => $this->db->escape_str($value->user->screen_name),
-                        'user_full_name'      => $this->db->escape_str($value->user->name),
-                        'user_id'      => $this->db->escape_str($value->user->id),
-                        'user_location'      => $this->db->escape_str($value->user->location),
-                        'geo_latitude'      => $this->db->escape_str($value->geo->coordinates[0]),
-                        'geo_longitude'      => $this->db->escape_str($value->geo->coordinates[1]),
-                        'place_name'      => $this->db->escape_str($value->place->name),
-                        'place_full_name'      => $this->db->escape_str($value->place->full_name),
-                        'place_country'      => $this->db->escape_str($value->place->country),
-                        'tweet_id'      => $value->id_str,
-                        'tweet_text'      => $this->db->escape_str($value->text),
-                        'tweet_date'      => $this->db->escape_str($value->created_at),
-                        'date_added'      => date('Y-m-d H:i:s')
+                        'user_screen_name'          => $this->db->escape_str($value->user->screen_name),
+                        'user_full_name'            => $this->db->escape_str($value->user->name),
+                        'user_profile_image_url'    => $this->db->escape_str($value->user->profile_image_url),
+                        'user_id'                   => $this->db->escape_str($value->user->id),
+                        'user_location'             => $this->db->escape_str($value->user->location),
+                        'geo_latitude'              => $this->db->escape_str($value->geo->coordinates[0]),
+                        'geo_longitude'             => $this->db->escape_str($value->geo->coordinates[1]),
+                        'place_name'                => $this->db->escape_str($value->place->name),
+                        'place_full_name'           => $this->db->escape_str($value->place->full_name),
+                        'place_country'             => $this->db->escape_str($value->place->country),
+                        'tweet_id'                  => $value->id_str,
+                        'tweet_text'                => $this->db->escape_str($value->text),
+                        'tweet_hashtags'            => $hashtags_str,
+                        'tweet_date'                => $this->db->escape_str($value->created_at),
+                        'date_added'                => date('Y-m-d H:i:s')
                     );
 
                     if($this->db->insert('tweets', $data)){
@@ -201,8 +218,7 @@ class Site_model extends CI_Model{
 
             } // if($value->place->country_code === "CA"){
 
-
-        }
+        } // foreach($result_obj->statuses as $key => $value){
 
         // echo '<br>Total Inserted: ' . $total;
 
@@ -318,7 +334,17 @@ class Site_model extends CI_Model{
         // loop each tweet
         foreach($result_obj->statuses as $key => $value){
 
+            // gather hashtags and store as a string
+            $hashtags_arr = array();
+            $hashtags_str = '';
+            foreach($value->entities->hashtags as $hashtag){
+                array_push($hashtags_arr, '#' . $hashtag->text);
+
+            }
+            $hashtags_str = implode(', ', $hashtags_arr);
+
             // // output data
+            // echo '<br>user_profile_image_url: ' . $value->user->profile_image_url;
             // echo '<br>user_screen_name: ' . $value->user->screen_name;
             // echo '<br>user_full_name: ' . $value->user->name;
             // echo '<br>user_id: ' . $value->user->id;
@@ -329,6 +355,8 @@ class Site_model extends CI_Model{
             // echo '<br>place_full_name: ' . $value->place->full_name;
             // echo '<br>place_country: ' . $value->place->country;
             // echo '<br>tweet_id: ' . $value->id;
+            // echo '<br>tweet_text: ' . $value->text;
+            // echo '<br>hashtags: ' . $hashtags_str;
             // echo '<br>tweet_date: ' . $value->created_at;
             // echo '<br>date_added: ' . date('Y-m-d H:i:s');
             // echo '<br>---------------------------------------- ';
@@ -341,25 +369,25 @@ class Site_model extends CI_Model{
                 // $result = $conn->query($sql);
                 $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
 
-
-
                 if($query->num_rows() <= 0){
                     // no existing records
 
                     $data = array(
-                        'user_screen_name'      => $this->db->escape_str($value->user->screen_name),
-                        'user_full_name'      => $this->db->escape_str($value->user->name),
-                        'user_id'      => $this->db->escape_str($value->user->id),
-                        'user_location'      => $this->db->escape_str($value->user->location),
-                        'geo_latitude'      => $this->db->escape_str($value->geo->coordinates[0]),
-                        'geo_longitude'      => $this->db->escape_str($value->geo->coordinates[1]),
-                        'place_name'      => $this->db->escape_str($value->place->name),
-                        'place_full_name'      => $this->db->escape_str($value->place->full_name),
-                        'place_country'      => $this->db->escape_str($value->place->country),
-                        'tweet_id'      => $value->id_str,
-                        'tweet_text'      => $this->db->escape_str($value->text),
-                        'tweet_date'      => $this->db->escape_str($value->created_at),
-                        'date_added'      => date('Y-m-d H:i:s')
+                        'user_screen_name'          => $this->db->escape_str($value->user->screen_name),
+                        'user_full_name'            => $this->db->escape_str($value->user->name),
+                        'user_profile_image_url'    => $this->db->escape_str($value->user->profile_image_url),
+                        'user_id'                   => $this->db->escape_str($value->user->id),
+                        'user_location'             => $this->db->escape_str($value->user->location),
+                        'geo_latitude'              => $this->db->escape_str($value->geo->coordinates[0]),
+                        'geo_longitude'             => $this->db->escape_str($value->geo->coordinates[1]),
+                        'place_name'                => $this->db->escape_str($value->place->name),
+                        'place_full_name'           => $this->db->escape_str($value->place->full_name),
+                        'place_country'             => $this->db->escape_str($value->place->country),
+                        'tweet_id'                  => $value->id_str,
+                        'tweet_text'                => $this->db->escape_str($value->text),
+                        'tweet_hashtags'            => $hashtags_str,
+                        'tweet_date'                => $this->db->escape_str($value->created_at),
+                        'date_added'                => date('Y-m-d H:i:s')
                     );
 
                     if($this->db->insert('tweets', $data)){
@@ -372,8 +400,7 @@ class Site_model extends CI_Model{
 
             } // if($value->place->country_code === "CA"){
 
-
-        }
+        } // foreach($result_obj->statuses as $key => $value){
 
         // echo '<br>Total Inserted: ' . $total;
 
@@ -478,7 +505,17 @@ class Site_model extends CI_Model{
         // loop each tweet
         foreach($result_obj->statuses as $key => $value){
 
+            // gather hashtags and store as a string
+            $hashtags_arr = array();
+            $hashtags_str = '';
+            foreach($value->entities->hashtags as $hashtag){
+                array_push($hashtags_arr, '#' . $hashtag->text);
+
+            }
+            $hashtags_str = implode(', ', $hashtags_arr);
+
             // // output data
+            // echo '<br>user_profile_image_url: ' . $value->user->profile_image_url;
             // echo '<br>user_screen_name: ' . $value->user->screen_name;
             // echo '<br>user_full_name: ' . $value->user->name;
             // echo '<br>user_id: ' . $value->user->id;
@@ -489,6 +526,8 @@ class Site_model extends CI_Model{
             // echo '<br>place_full_name: ' . $value->place->full_name;
             // echo '<br>place_country: ' . $value->place->country;
             // echo '<br>tweet_id: ' . $value->id;
+            // echo '<br>tweet_text: ' . $value->text;
+            // echo '<br>hashtags: ' . $hashtags_str;
             // echo '<br>tweet_date: ' . $value->created_at;
             // echo '<br>date_added: ' . date('Y-m-d H:i:s');
             // echo '<br>---------------------------------------- ';
@@ -501,25 +540,25 @@ class Site_model extends CI_Model{
                 // $result = $conn->query($sql);
                 $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
 
-
-
                 if($query->num_rows() <= 0){
                     // no existing records
 
                     $data = array(
-                        'user_screen_name'      => $this->db->escape_str($value->user->screen_name),
-                        'user_full_name'      => $this->db->escape_str($value->user->name),
-                        'user_id'      => $this->db->escape_str($value->user->id),
-                        'user_location'      => $this->db->escape_str($value->user->location),
-                        'geo_latitude'      => $this->db->escape_str($value->geo->coordinates[0]),
-                        'geo_longitude'      => $this->db->escape_str($value->geo->coordinates[1]),
-                        'place_name'      => $this->db->escape_str($value->place->name),
-                        'place_full_name'      => $this->db->escape_str($value->place->full_name),
-                        'place_country'      => $this->db->escape_str($value->place->country),
-                        'tweet_id'      => $value->id_str,
-                        'tweet_text'      => $this->db->escape_str($value->text),
-                        'tweet_date'      => $this->db->escape_str($value->created_at),
-                        'date_added'      => date('Y-m-d H:i:s')
+                        'user_screen_name'          => $this->db->escape_str($value->user->screen_name),
+                        'user_full_name'            => $this->db->escape_str($value->user->name),
+                        'user_profile_image_url'    => $this->db->escape_str($value->user->profile_image_url),
+                        'user_id'                   => $this->db->escape_str($value->user->id),
+                        'user_location'             => $this->db->escape_str($value->user->location),
+                        'geo_latitude'              => $this->db->escape_str($value->geo->coordinates[0]),
+                        'geo_longitude'             => $this->db->escape_str($value->geo->coordinates[1]),
+                        'place_name'                => $this->db->escape_str($value->place->name),
+                        'place_full_name'           => $this->db->escape_str($value->place->full_name),
+                        'place_country'             => $this->db->escape_str($value->place->country),
+                        'tweet_id'                  => $value->id_str,
+                        'tweet_text'                => $this->db->escape_str($value->text),
+                        'tweet_hashtags'            => $hashtags_str,
+                        'tweet_date'                => $this->db->escape_str($value->created_at),
+                        'date_added'                => date('Y-m-d H:i:s')
                     );
 
                     if($this->db->insert('tweets', $data)){
@@ -532,8 +571,7 @@ class Site_model extends CI_Model{
 
             } // if($value->place->country_code === "CA"){
 
-
-        }
+        } // foreach($result_obj->statuses as $key => $value){
 
         // echo '<br>Total Inserted: ' . $total;
 

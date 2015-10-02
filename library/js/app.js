@@ -72,15 +72,12 @@ window.ComeTogether = window.ComeTogether || {};
                         return L.divIcon({ html: cluster.getChildCount(), className: 'twitterClusterMarker', iconSize: L.point(60, 60) });
                         // return L.mapbox.marker.icon({ 'marker-symbol': cluster.getChildCount(), 'marker-color': '#422' });
                     }
-                    // iconCreateFunction: function(cluster){
-                    //     return new L.DivIcon({ html: '<strong>' + cluster.getChildCount() + '</strong>' });
-                    // }
                 });
 
                 // call the geojson
                 $.getJSON("site/populate_map_tweets", function(data) {
 
-                    console.log('geojson', data);
+                    // console.log('geojson', data);
 
                     var geojson = L.geoJson(data, {
                         onEachFeature: function (feature, layer) {
@@ -88,8 +85,14 @@ window.ComeTogether = window.ComeTogether || {};
                         layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
 
                         // add a popup with a chart
-                        var $popupHTML = '<h1>' + layer.feature.properties.title + '</h1>'
-                                    + '<p>' + layer.feature.properties.desc + '</h1>';
+                        // var $popupHTML = '<h1>' + layer.feature.properties.screen_name + '</h1>'
+                        //             + '<p>' + layer.feature.properties.tweet + '</p>'
+                        //             + '<p>' + layer.feature.properties.hashtags + '</p>'
+                        //             + layer.feature.properties.image;
+
+                        var $popupHTML = '<img src="' + layer.feature.properties.image + '" alt="' + layer.feature.properties.screen_name + '" class="image" />'
+                                    + '<h1 class="screen_name"><a href="http://www.twitter.com/' + layer.feature.properties.screen_name + '" target="_blank">@' + layer.feature.properties.screen_name + '</a></h1>'
+                                    + '<p>' + layer.feature.properties.tweet + '</p>';
                         layer.bindPopup($popupHTML);
 
                         }
