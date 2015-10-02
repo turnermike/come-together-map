@@ -71,7 +71,7 @@ class Site_model extends CI_Model{
         $this->load->library('TwitterAPIExchange', $settings);
 
         // hashtags to search
-        $hashtags = '#cometogether OR #gojaysgo OR #gojays #bluejays OR #jayswin OR #stiritup';
+        $hashtags = '#cometogether OR #gojaysgo OR #gojays OR #bluejays OR #jayswin OR #stiritup OR #blueoctober OR #timandsid OR #sn OR #aleastchamps';
         // $hashtags = '#cometogether OR #bluejays';
 
         // api info
@@ -220,7 +220,7 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        // echo '<br>Total Inserted: ' . $total;
+        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
@@ -256,7 +256,7 @@ class Site_model extends CI_Model{
         $this->load->library('TwitterAPIExchange', $settings);
 
         // hashtags to search
-        $hashtags = '#cometogether OR #gojaysgo OR #gojays #bluejays OR #jayswin OR #stiritup';
+        $hashtags = '#cometogether OR #gojaysgo OR #gojays OR #bluejays OR #jayswin OR #stiritup OR #blueoctober OR #timandsid OR #sn OR #aleastchamps';
         // $hashtags = '#cometogether OR #bluejays';
 
         // api info
@@ -402,7 +402,7 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        // echo '<br>Total Inserted: ' . $total;
+        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
@@ -436,7 +436,7 @@ class Site_model extends CI_Model{
         $this->load->library('TwitterAPIExchange', $settings);
 
         // hashtags to search
-        $hashtags = '#cometogether OR #gojaysgo OR #gojays #bluejays OR #jayswin OR #stiritup';
+        $hashtags = '#cometogether OR #gojaysgo OR #gojays OR #bluejays OR #jayswin OR #stiritup OR #blueoctober OR #timandsid OR #sn OR #aleastchamps';
         // $hashtags = '#cometogether OR #bluejays';
 
         // api info
@@ -573,7 +573,7 @@ class Site_model extends CI_Model{
 
         } // foreach($result_obj->statuses as $key => $value){
 
-        // echo '<br>Total Inserted: ' . $total;
+        echo '<br>Total Inserted: ' . $total;
 
         if(isset($result_obj->search_metadata->next_results)){
             // echo '<br>reload it ' . $_SERVER['HTTP_HOST'];
