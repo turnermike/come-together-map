@@ -76,7 +76,7 @@
 	// // set the global variable
 	// define('ENVIRONMENT', $environment);
 
-	define('ENVIRONMENT', $staging);
+	define('ENVIRONMENT', 'staging');
 
 
 /*
