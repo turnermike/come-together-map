@@ -46,6 +46,13 @@ class Site extends CI_Controller {
 
     }
 
+    public function get_instagram(){
+
+        $this->load->model('site_model');
+        $instagram = $this->site_model->get_instagram();
+
+    }
+
     public function populate_map_instagrams(){
 
         $this->load->model('site_model');
