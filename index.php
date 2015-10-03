@@ -53,31 +53,31 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-	// default to production
-	$server = strtolower($_SERVER['SERVER_NAME']);
-	$environment = 'production';
+	// // default to production
+	// $server = strtolower($_SERVER['SERVER_NAME']);
+	// $environment = 'production';
 
-	// check for development
-	$result = preg_match('/cometogether.dev/', $server, $matches);
-	if($result > 0) $environment = 'development';
+	// // check for development
+	// $result = preg_match('/cometogether.dev/', $server, $matches);
+	// if($result > 0) $environment = 'development';
 
-	// check for staging
-	$result = preg_match('/cometogether.ristaging.ca/', $server, $matches);
-	if($result > 0) $environment = 'staging';
+	// // check for staging
+	// $result = preg_match('/cometogether.ristaging.ca/', $server, $matches);
+	// if($result > 0) $environment = 'staging';
 
-	// check for production
-	$result = preg_match('/production-domain.ca/', $server, $matches);
-	if($result > 0) $environment = 'production';
+	// // check for production
+	// $result = preg_match('/production-domain.ca/', $server, $matches);
+	// if($result > 0) $environment = 'production';
 
-	// echo 'env: ' . $environment;
+	// // echo 'env: ' . $environment;
 
-	// set the global variable
-	define('ENVIRONMENT', $environment);
+	// // set the global variable
+	// define('ENVIRONMENT', $environment);
 
 
-	// define('ENVIRONMENT', 'staging');
+	define('ENVIRONMENT', 'staging');
 
 /*
  *---------------------------------------------------------------
