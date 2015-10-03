@@ -63,7 +63,42 @@ class Site_model extends CI_Model{
 
 
 
+    function get_instagram(){
 
+        $this->config->load('instagram_api', TRUE);
+        $client_id = $this->config->item('instagram_client_id', 'instagram_api');
+
+        $hashtag = 'cometogether';
+        $query = array(
+            'client_id' => $client_id,
+            'count' => '33'
+        );
+        $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
+        try{
+
+            $curl_connection = curl_init($url);
+            curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
+            curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
+
+            //Data are stored in $data
+            $data = json_decode(curl_exec($curl_connection), true);
+            curl_close($curl_connection);
+
+            echo "<pre>";
+            var_dump($data);
+            echo "</pre>";
+
+
+
+
+        } catch(Exception $e){
+
+            return $e->getMessage();
+
+        }
+
+    }
 
 
 
