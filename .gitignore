@@ -1,3 +1,7 @@
+
+# ignore index.php for cron
+/index.php
+
 # ignore all instances of the following
 *.DS_Store
 error_log
