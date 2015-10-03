@@ -245,9 +245,9 @@ class Site_model extends CI_Model{
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
-            echo '<br>Results Found: ' . count($result_obj->statuses);
-            echo '<br>Total Inserted: ' . $total;
+            echo "\n" . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo "\n\nResults Found: " . count($result_obj->statuses);
+            echo "\nTotal Inserted: " . $total;
         }
 
 
@@ -451,9 +451,9 @@ class Site_model extends CI_Model{
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
-            echo '<br>Results Found: ' . count($result_obj->statuses);
-            echo '<br>Total Inserted: ' . $total;
+            echo "\n" . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo "\n\nResults Found: " . count($result_obj->statuses);
+            echo "\nTotal Inserted: " . $total;
         }
 
 
@@ -656,9 +656,9 @@ class Site_model extends CI_Model{
             // echo '<br>' . $_SERVER['PHP_SELF'] . $result_obj->search_metadata->next_results;
             header('Refresh:0, url=http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '?&reload=true');
         }else{
-            echo '<br>' . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
-            echo '<br>Results Found: ' . count($result_obj->statuses);
-            echo '<br>Total Inserted: ' . $total;
+            echo "\n" . $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] . ' has been executed.';
+            echo "\n\nResults Found: " . count($result_obj->statuses);
+            echo "\nTotal Inserted: " . $total;
         }
 
 
