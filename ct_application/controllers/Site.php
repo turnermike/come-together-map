@@ -17,13 +17,6 @@ class Site extends CI_Controller {
 
     }
 
-    public function get_instagram(){
-
-        $this->load->model('site_model');
-        $instagram = $this->site_model->get_instagram();
-
-    }
-
     public function get_tweets_west(){
 
         $this->load->model('site_model');
@@ -53,6 +46,13 @@ class Site extends CI_Controller {
 
     }
 
+    public function populate_map_instagrams(){
+
+        $this->load->model('site_model');
+        $tweets = $this->site_model->populate_map_instagrams();
+        echo json_encode($tweets);
+
+    }
 
 
 }

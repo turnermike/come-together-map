@@ -47,10 +47,7 @@ class Site_model extends CI_Model{
                         'image' => $value->user_profile_image_url,
                         'screen_name' => $value->user_screen_name,
                         'tweet' => $value->tweet_text,
-                        'hashtags' => $value->tweet_hashtags,
-                        // 'marker-color' => '#548cba',
-                        // 'marker-size' => 'small',
-                        // 'marker-symbol' => 'ferry'
+                        'hashtags' => $value->tweet_hashtags
                     )
                 );
 
@@ -60,7 +57,6 @@ class Site_model extends CI_Model{
 
             }
 
-            // $result = array('success' => true, 'data' => $geo_json);
             return $geo_json;
 
         }else{
@@ -70,7 +66,53 @@ class Site_model extends CI_Model{
 
         }
 
-        // return $result;
+    }
+
+
+    function populate_map_instagrams(){
+
+        $query = $this->db->get('instagram');
+
+        if($query->num_rows()){
+            // all good
+
+            $geo_json = array();
+            $total = 0;
+
+            foreach($query->result() as $key => $value){
+
+                // echo "<pre>";
+                // var_dump($value);
+                // echo "</pre>";
+
+                $marker = array(
+                    'type' => 'Feature',
+                    'geometry' => array(
+                                        'type' => 'Point',
+                                        'coordinates' => array($value->location_longitude, $value->location_latitude)
+                    ),
+                    'properties' => array(
+                        'image' => $value->user_profile_picture,
+                        'screen_name' => $value->user_username,
+                        'tweet' => $value->caption_text,
+                        'hashtags' => $value->tags
+                    )
+                );
+
+                array_push($geo_json, $marker);
+
+                $total++;
+
+            }
+
+            return $geo_json;
+
+        }else{
+
+            $result = array('success' => false, 'message' => $this->db->error());
+            return $result;
+
+        }
 
     }
 
@@ -113,7 +155,50 @@ class Site_model extends CI_Model{
             'client_id' => $client_id,
             'count' => '33'
         );
-        $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
+
+
+        // // twitter will return a max of 100 results
+        // // if there are more than 100 results available, we will reload this page
+        // // and pass the max_id value provided to get the next page
+        // if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
+
+        //     $query = $this->db->get_where('config', array('var' => 'central_max_id'));
+        //     $row = $query->row();
+
+        //     // echo "<pre>";
+        //     // var_dump($row->val);
+        //     // echo "</pre>";
+
+        //     $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
+
+
+        // }else{
+        //     // first run
+        //     $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
+        // }
+
+        // instagram will return a max of 33 results
+        // if there are more than 33 results available, we will reload this page
+        // and pass the next_url value provided by the api to get the next page
+        if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
+            // it's a reload, get the next url from the database
+
+            $query = $this->db->get_where('config', array('var' => 'instagram_next_url'));
+            $row = $query->row();
+            $url = $row->val;
+
+            // echo "<pre>";
+            // var_dump($row->val);
+            // echo "</pre>";
+
+        }else{
+            // first run
+            $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
+        }
+
+
+
+
         try{
 
             $curl_connection = curl_init($url);
@@ -150,7 +235,7 @@ class Site_model extends CI_Model{
                     $this->db->where('var', 'instagram_next_url');
 
                     if($this->db->update('config') === TRUE){
-                        echo '<br>next_url Save to Database Successfully: ' . $this->db->affected_rows() . '<br>';
+                        // echo '<br>next_url Save to Database Successfully: ' . $this->db->affected_rows() . '<br>';
                     }else{
                         echo '<br>Error: ' . $this->db->error() . '<br>';
                     }
@@ -168,33 +253,40 @@ class Site_model extends CI_Model{
                 foreach($data->data as $key => $value){
                     // loop each instagram
 
-                    if(isset($value->location)){
+                    if(isset($value->location->latitude) && isset($value->location->longitude)){
 
                         // prepare tags for insert
                         $tags_arr = $value->tags;
                         $tags_str = implode(',', $tags_arr);
 
-                        echo "<br><br>Username: " . $value->user->username;
-                        echo "<br>Full name: " . $value->user->full_name;
-                        echo "<br>Profile picture: " . $value->user->profile_picture;
-                        echo "<br>User ID: " . $value->user->id;
-                        echo "<br>Latitude: " . $value->location->latitude;
-                        echo "<br>Longitude: " . $value->location->longitude;
-                        echo "<br>Location: " . $value->location->name;
-                        echo "<br>Tags: " . $tags_str;
-                        echo "<br>Caption: " . $value->caption->text;
-                        echo "<br>Created time: " . date('Y-m-d H:i:s', $value->created_time);
-                        echo "<br>Link: " . $value->link;
-                        echo "<br>Instagram ID: " . $value->id;
-                        echo "<br>Date added: " . date('Y-m-d H:i:s');
-                        echo '<br>---------------------------------------------';
+                        // prepare caption text
+                        if(isset($value->caption->text) && $value->caption->text != ''){
+                            $caption_text = $value->caption->text;
+                        }else{
+                            $caption_text = '';
+                        }
+
+                        // echo "<br><br>Username: " . $value->user->username;
+                        // echo "<br>Full name: " . $value->user->full_name;
+                        // echo "<br>Profile picture: " . $value->user->profile_picture;
+                        // echo "<br>User ID: " . $value->user->id;
+                        // echo "<br>Latitude: " . $value->location->latitude;
+                        // echo "<br>Longitude: " . $value->location->longitude;
+                        // echo "<br>Location: " . $value->location->name;
+                        // echo "<br>Tags: " . $tags_str;
+                        // echo "<br>Caption: " . $value->caption->text;
+                        // echo "<br>Created time: " . date('Y-m-d H:i:s', $value->created_time);
+                        // echo "<br>Link: " . $value->link;
+                        // echo "<br>Instagram ID: " . $value->id;
+                        // echo "<br>Date added: " . date('Y-m-d H:i:s');
+                        // echo '<br>---------------------------------------------';
 
                         // make sure the tweet hasn't already been added to db
                         $query = $this->db->get_where('instagram', array('instagram_id' => $value->id));
 
                         if($query->num_rows() <= 0){
 
-                            $data = array(
+                            $insert_data = array(
                                 'user_username'         => $value->user->username,
                                 'user_full_name'        => $value->user->full_name,
                                 'user_profile_picture'  => $value->user->profile_picture,
@@ -203,14 +295,14 @@ class Site_model extends CI_Model{
                                 'location_longitude'    => $value->location->longitude,
                                 'location_name'         => $value->location->name,
                                 'tags'                  => $tags_str,
-                                'caption_text'          => $value->caption->text,
+                                'caption_text'          => $caption_text,
                                 'created_time'          => date('Y-m-d H:i:s', $value->created_time),
                                 'link'                  => $value->link,
                                 'instagram_id'          => $value->id,
                                 'date_added'            => date('Y-m-d H:i:s')
                             );
 
-                            if($this->db->insert('instagram', $data)){
+                            if($this->db->insert('instagram', $insert_data)){
                                 // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
                                 $totalInserted++;
                             }else{
@@ -230,16 +322,14 @@ class Site_model extends CI_Model{
                 // echo '<br><br>Results Found: ' . $totalFound;
                 // echo '<br>Total Inserted: ' . $totalInserted;
 
-                // if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
+                if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
 
-                //     // echo '<br><br>we have a next url';
+                    // echo '<br><br>we have a next url';
+                    header('Refresh:0, url=/site/get_instagram?reload=true');
 
-                //     header('Refresh:0, url=' . $data->pagination->next_url);
-
-
-                // }else{
-                //     echo '<br><br>' . __FILE__ . ' has been executed.';
-                // }
+                }else{
+                    echo '<br><br>' . __FILE__ . ' has been executed.';
+                }
 
             }
 
