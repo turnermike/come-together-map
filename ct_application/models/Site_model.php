@@ -4,6 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Site_model extends CI_Model{
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function populate_map_tweets(){
 
         $query = $this->db->get('tweets');
@@ -63,12 +80,35 @@ class Site_model extends CI_Model{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function get_instagram(){
 
         $this->config->load('instagram_api', TRUE);
         $client_id = $this->config->item('instagram_client_id', 'instagram_api');
 
         $hashtag = 'cometogether';
+        // $hashtags = array('cometogether', 'bluejays');
         $query = array(
             'client_id' => $client_id,
             'count' => '33'
@@ -82,14 +122,126 @@ class Site_model extends CI_Model{
             curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
 
             //Data are stored in $data
-            $data = json_decode(curl_exec($curl_connection), true);
+            // $data = json_decode(curl_exec($curl_connection), true);
+            $data = json_decode(curl_exec($curl_connection));
             curl_close($curl_connection);
 
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
+            // dump all of it
+            // echo "<pre>";
+            // var_dump($data);
+            // echo "</pre>";
+
+            // // dump a single instagram
+            // echo "<pre>";
+            // var_dump($data->data[0]);
+            // echo "</pre>";
+
+            $totalFound = 0;
+            $totalInserted = 0;
+
+            if(sizeof($data->data) > 0){
+                // we have records
+
+                // save next results url to database so we can pull it on reload
+                if(isset($data->pagination->next_url)){
+
+                    $next_url = array('val' => $data->pagination->next_url);
+                    $this->db->set($next_url);
+                    $this->db->where('var', 'instagram_next_url');
+
+                    if($this->db->update('config') === TRUE){
+                        echo '<br>next_url Save to Database Successfully: ' . $this->db->affected_rows() . '<br>';
+                    }else{
+                        echo '<br>Error: ' . $this->db->error() . '<br>';
+                    }
+
+                }else{
+
+                    // reset the config value to null
+                    $data = array('val' => NULL);
+                    $this->db->set($data);
+                    $this->db->where('var', 'instagram_next_url');
+                    $this->db->update('config');
+
+                }
+
+                foreach($data->data as $key => $value){
+                    // loop each instagram
+
+                    if(isset($value->location)){
+
+                        // prepare tags for insert
+                        $tags_arr = $value->tags;
+                        $tags_str = implode(',', $tags_arr);
+
+                        echo "<br><br>Username: " . $value->user->username;
+                        echo "<br>Full name: " . $value->user->full_name;
+                        echo "<br>Profile picture: " . $value->user->profile_picture;
+                        echo "<br>User ID: " . $value->user->id;
+                        echo "<br>Latitude: " . $value->location->latitude;
+                        echo "<br>Longitude: " . $value->location->longitude;
+                        echo "<br>Location: " . $value->location->name;
+                        echo "<br>Tags: " . $tags_str;
+                        echo "<br>Caption: " . $value->caption->text;
+                        echo "<br>Created time: " . date('Y-m-d H:i:s', $value->created_time);
+                        echo "<br>Link: " . $value->link;
+                        echo "<br>Instagram ID: " . $value->id;
+                        echo "<br>Date added: " . date('Y-m-d H:i:s');
+                        echo '<br>---------------------------------------------';
+
+                        // make sure the tweet hasn't already been added to db
+                        $query = $this->db->get_where('instagram', array('instagram_id' => $value->id));
+
+                        if($query->num_rows() <= 0){
+
+                            $data = array(
+                                'user_username'         => $value->user->username,
+                                'user_full_name'        => $value->user->full_name,
+                                'user_profile_picture'  => $value->user->profile_picture,
+                                'user_id'               => $value->user->id,
+                                'location_latitude'     => $value->location->latitude,
+                                'location_longitude'    => $value->location->longitude,
+                                'location_name'         => $value->location->name,
+                                'tags'                  => $tags_str,
+                                'caption_text'          => $value->caption->text,
+                                'created_time'          => date('Y-m-d H:i:s', $value->created_time),
+                                'link'                  => $value->link,
+                                'instagram_id'          => $value->id,
+                                'date_added'            => date('Y-m-d H:i:s')
+                            );
+
+                            if($this->db->insert('instagram', $data)){
+                                // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
+                                $totalInserted++;
+                            }else{
+                                echo ' | Error: ' . $this->db->error() . '<br>';
+                            }
+
+                        }
 
 
+
+                    }
+
+                    $totalFound++;
+
+                }
+
+                // echo '<br><br>Results Found: ' . $totalFound;
+                // echo '<br>Total Inserted: ' . $totalInserted;
+
+                // if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
+
+                //     // echo '<br><br>we have a next url';
+
+                //     header('Refresh:0, url=' . $data->pagination->next_url);
+
+
+                // }else{
+                //     echo '<br><br>' . __FILE__ . ' has been executed.';
+                // }
+
+            }
 
 
         } catch(Exception $e){
@@ -99,6 +251,19 @@ class Site_model extends CI_Model{
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,9 +302,6 @@ class Site_model extends CI_Model{
         // and pass the max_id value provided to get the next page
         if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
 
-            // $sql = "SELECT val FROM config WHERE var = 'central_max_id'";
-            // $result = $conn->query($sql);
-            // $row = $result->fetch_row();
             $query = $this->db->get_where('config', array('var' => 'central_max_id'));
             $row = $query->row();
 
@@ -338,9 +500,6 @@ class Site_model extends CI_Model{
         // and pass the max_id value provided to get the next page
         if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
 
-            // $sql = "SELECT val FROM config WHERE var = 'central_max_id'";
-            // $result = $conn->query($sql);
-            // $row = $result->fetch_row();
             $query = $this->db->get_where('config', array('var' => 'central_max_id'));
             $row = $query->row();
 
@@ -443,8 +602,6 @@ class Site_model extends CI_Model{
             if(strtoupper($value->place->country_code) === "CA"){
 
                 // make sure the tweet hasn't already been added to db
-                // $sql = "SELECT * FROM tweets WHERE tweet_id = '" . $value->id . "'";
-                // $result = $conn->query($sql);
                 $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
 
                 if($query->num_rows() <= 0){
