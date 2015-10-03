@@ -1,6 +1,6 @@
 
 # ignore index.php for cron
-# /index.php
+/index.php
 
 # ignore all instances of the following
 *.DS_Store
