@@ -171,27 +171,6 @@ class Site_model extends CI_Model{
             'count' => '33'
         );
 
-
-        // // twitter will return a max of 100 results
-        // // if there are more than 100 results available, we will reload this page
-        // // and pass the max_id value provided to get the next page
-        // if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
-
-        //     $query = $this->db->get_where('config', array('var' => 'central_max_id'));
-        //     $row = $query->row();
-
-        //     // echo "<pre>";
-        //     // var_dump($row->val);
-        //     // echo "</pre>";
-
-        //     $getfield = '?max_id=' . $row->val . 'q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
-
-
-        // }else{
-        //     // first run
-        //     $getfield = '?q=' . urlencode($hashtags) . '&count=100&result_type=mixed&lang=en&geocode=55.508330,-120.157088,2000km';
-        // }
-
         // instagram will return a max of 33 results
         // if there are more than 33 results available, we will reload this page
         // and pass the next_url value provided by the api to get the next page
@@ -226,7 +205,7 @@ class Site_model extends CI_Model{
             $data = json_decode(curl_exec($curl_connection));
             curl_close($curl_connection);
 
-            // dump all of it
+            // // dump all of it
             // echo "<pre>";
             // var_dump($data);
             // echo "</pre>";
@@ -305,19 +284,22 @@ class Site_model extends CI_Model{
                             if(strpos($caption_text, 'jays') !== FALSE){
 
                                 $insert_data = array(
-                                    'user_username'         => $value->user->username,
-                                    'user_full_name'        => $value->user->full_name,
-                                    'user_profile_picture'  => $value->user->profile_picture,
-                                    'user_id'               => $value->user->id,
-                                    'location_latitude'     => $value->location->latitude,
-                                    'location_longitude'    => $value->location->longitude,
-                                    'location_name'         => $value->location->name,
-                                    'tags'                  => $tags_str,
-                                    'caption_text'          => $caption_text,
-                                    'created_time'          => date('Y-m-d H:i:s', $value->created_time),
-                                    'link'                  => $value->link,
-                                    'instagram_id'          => $value->id,
-                                    'date_added'            => date('Y-m-d H:i:s')
+                                    'user_username'             => $value->user->username,
+                                    'user_full_name'            => $value->user->full_name,
+                                    'user_profile_picture'      => $value->user->profile_picture,
+                                    'user_id'                   => $value->user->id,
+                                    'location_latitude'         => $value->location->latitude,
+                                    'location_longitude'        => $value->location->longitude,
+                                    'location_name'             => $value->location->name,
+                                    'pic_low_resolution'        => $value->images->low_resolution->url,
+                                    'pic_thumbnail'             => $value->images->thumbnail->url,
+                                    'pic_standard_resolution'   => $value->images->standard_resolution->url,
+                                    'tags'                      => $tags_str,
+                                    'caption_text'              => $caption_text,
+                                    'created_time'              => date('Y-m-d H:i:s', $value->created_time),
+                                    'link'                      => $value->link,
+                                    'instagram_id'              => $value->id,
+                                    'date_added'                => date('Y-m-d H:i:s')
                                 );
 
                                 if($this->db->insert('instagram', $insert_data)){
