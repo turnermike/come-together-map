@@ -26,7 +26,19 @@ body{
     text-align:center;
     font-size: 1.083em;
     color: #fff;
+}
 
+.instagramClusterMarker{
+    margin: 0;
+    padding: 23px 0 0 0;
+    width: 60px;
+    height: 60px;
+    background: url(../images/instagramClusterMarker.png);
+    // background: pink;
+    background-size: 100%;
+    text-align:center;
+    font-size: 1.083em;
+    color: #fff;
 }
 
 .leaflet-popup-content{

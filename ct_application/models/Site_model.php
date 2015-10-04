@@ -69,6 +69,17 @@ class Site_model extends CI_Model{
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
     function populate_map_instagrams(){
 
         $query = $this->db->get('instagram');

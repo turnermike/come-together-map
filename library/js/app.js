@@ -50,6 +50,8 @@ window.ComeTogether = window.ComeTogether || {};
 
                 if(this.settings.debug){ console.log('initMap()'); };
 
+                var map = L.map('map', 'leatherface416.njcm6oc3')
+                .setView([52.514457, -99.546737], 4);
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
@@ -58,37 +60,49 @@ window.ComeTogether = window.ComeTogether || {};
                 // .setView([52.514457, -99.546737], 4);
                 // baseLayer.addTo(map);
 
-                // define the cluster layer
-                var markers = L.markerClusterGroup({
+                // define twitter cluster layer markers
+                var twitter_markers = L.markerClusterGroup({
                     showCoverageOnHover: false,
                     removeOutsideVisibleBounds: true,
                     singleMarkerMode: true,
                     iconCreateFunction: function (cluster) {
-                        var markers = cluster.getAllChildMarkers();
+                        var twitter_markers = cluster.getAllChildMarkers();
                         var n = 0;
-                        for (var i = 0; i < markers.length; i++) {
-                            n += markers[i].number;
+                        for (var i = 0; i < twitter_markers.length; i++) {
+                            n += twitter_markers[i].number;
                         }
                         return L.divIcon({ html: cluster.getChildCount(), className: 'twitterClusterMarker', iconSize: L.point(60, 60) });
                         // return L.mapbox.marker.icon({ 'marker-symbol': cluster.getChildCount(), 'marker-color': '#422' });
                     }
                 });
 
-                // call the geojson
+                // define instagram cluster layer markers
+                var instagram_markers = L.markerClusterGroup({
+                    showCoverageOnHover: false,
+                    removeOutsideVisibleBounds: true,
+                    singleMarkerMode: true,
+                    iconCreateFunction: function (cluster) {
+                        var instagram_markers = cluster.getAllChildMarkers();
+                        var n = 0;
+                        for (var i = 0; i < instagram_markers.length; i++) {
+                            n += instagram_markers[i].number;
+                        }
+                        return L.divIcon({ html: cluster.getChildCount(), className: 'instagramClusterMarker', iconSize: L.point(60, 60) });
+                        // return L.mapbox.marker.icon({ 'marker-symbol': cluster.getChildCount(), 'marker-color': '#422' });
+                    }
+                });
+
+                // call the geojson for tweets
                 $.getJSON("site/populate_map_tweets", function(data) {
 
                     // console.log('geojson', data);
 
                     var geojson = L.geoJson(data, {
-                        onEachFeature: function (feature, layer) {
-                        // use a custom marker
-                        layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
 
-                        // add a popup with a chart
-                        // var $popupHTML = '<h1>' + layer.feature.properties.screen_name + '</h1>'
-                        //             + '<p>' + layer.feature.properties.tweet + '</p>'
-                        //             + '<p>' + layer.feature.properties.hashtags + '</p>'
-                        //             + layer.feature.properties.image;
+                        onEachFeature: function (feature, layer) {
+
+                        // use a custom marker
+                        // layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
 
                         var $popupHTML = '<img src="' + layer.feature.properties.image + '" alt="' + layer.feature.properties.screen_name + '" class="image" />'
                                     + '<h1 class="screen_name"><a href="http://www.twitter.com/' + layer.feature.properties.screen_name + '" target="_blank">@' + layer.feature.properties.screen_name + '</a></h1>'
@@ -97,21 +111,58 @@ window.ComeTogether = window.ComeTogether || {};
 
                         }
                     });
-                    markers.addLayer(geojson);
+                    twitter_markers.addLayer(geojson);
 
-                    // construct the map
+
                     // // example of passing options
-                    // var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
-                    // // set the view outter boundries to the available markers
-                    // var map = L.map('map').fitBounds(markers.getBounds());
+                    // var map = L.map('map', {maxZoom: 9}).fitBounds(twitter_markers.getBounds());
+                    // // set the view outter boundries to the available twitter_markers
+                    // var map = L.map('map').fitBounds(twitter_markers.getBounds());
 
 
-                    var map = L.map('map', 'leatherface416.njcm6oc3')
-                    .setView([52.514457, -99.546737], 4);
+                    // var map = L.map('map', 'leatherface416.njcm6oc3')
+                    // .setView([52.514457, -99.546737], 4);
                     baseLayer.addTo(map);
-                    markers.addTo(map);
+                    twitter_markers.addTo(map);
 
                 });
+
+                // call the geojson for tweets
+                $.getJSON("site/populate_map_instagrams", function(data) {
+
+                    // console.log('geojson', data);
+
+                    var geojson = L.geoJson(data, {
+
+                        onEachFeature: function (feature, layer) {
+
+                        // use a custom marker
+                        // layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
+
+                        var $popupHTML = '<img src="' + layer.feature.properties.image + '" alt="' + layer.feature.properties.screen_name + '" class="image" />'
+                                    + '<h1 class="screen_name"><a href="http://www.twitter.com/' + layer.feature.properties.screen_name + '" target="_blank">@' + layer.feature.properties.screen_name + '</a></h1>'
+                                    + '<p>' + layer.feature.properties.tweet + '</p>';
+                        layer.bindPopup($popupHTML);
+
+                        }
+                    });
+                    instagram_markers.addLayer(geojson);
+
+
+                    // // example of passing options
+                    // var map = L.map('map', {maxZoom: 9}).fitBounds(instagram_markers.getBounds());
+                    // // set the view outter boundries to the available instagram_markers
+                    // var map = L.map('map').fitBounds(instagram_markers.getBounds());
+
+
+                    // var map = L.map('map', 'leatherface416.njcm6oc3')
+                    // .setView([52.514457, -99.546737], 4);
+                    baseLayer.addTo(map);
+                    instagram_markers.addTo(map);
+
+                });
+
+
 
 
 

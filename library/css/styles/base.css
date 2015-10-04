@@ -30,13 +30,26 @@ body {
   color: #fff;
 }
 
-/* line 33, ../../scss/styles/base.scss */
+/* line 31, ../../scss/styles/base.scss */
+.instagramClusterMarker {
+  margin: 0;
+  padding: 23px 0 0 0;
+  width: 60px;
+  height: 60px;
+  background: url(../images/instagramClusterMarker.png);
+  background-size: 100%;
+  text-align: center;
+  font-size: 1.083em;
+  color: #fff;
+}
+
+/* line 45, ../../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 38, ../../scss/styles/base.scss */
+/* line 50, ../../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -44,7 +57,7 @@ body {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 48, ../../scss/styles/base.scss */
+/* line 60, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -57,15 +70,15 @@ body {
   color: #fff;
   background: pink;
 }
-/* line 59, ../../scss/styles/base.scss */
+/* line 71, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 62, ../../scss/styles/base.scss */
+/* line 74, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 65, ../../scss/styles/base.scss */
+/* line 77, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
