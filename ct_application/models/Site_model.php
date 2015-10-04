@@ -105,7 +105,7 @@ class Site_model extends CI_Model{
                                             'coordinates' => array($value->location_longitude, $value->location_latitude)
                         ),
                         'properties' => array(
-                            'image' => $value->user_profile_picture,
+                            'image' => $value->pic_standard_resolution,
                             'screen_name' => $value->user_username,
                             'tweet' => $value->caption_text,
                             'hashtags' => $value->tags
