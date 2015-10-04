@@ -301,27 +301,32 @@ class Site_model extends CI_Model{
 
                         if($query->num_rows() <= 0){
 
-                            $insert_data = array(
-                                'user_username'         => $value->user->username,
-                                'user_full_name'        => $value->user->full_name,
-                                'user_profile_picture'  => $value->user->profile_picture,
-                                'user_id'               => $value->user->id,
-                                'location_latitude'     => $value->location->latitude,
-                                'location_longitude'    => $value->location->longitude,
-                                'location_name'         => $value->location->name,
-                                'tags'                  => $tags_str,
-                                'caption_text'          => $caption_text,
-                                'created_time'          => date('Y-m-d H:i:s', $value->created_time),
-                                'link'                  => $value->link,
-                                'instagram_id'          => $value->id,
-                                'date_added'            => date('Y-m-d H:i:s')
-                            );
+                            // make sure the caption_text has the string 'jays' in it
+                            if(strpos($caption_text, 'jays') !== FALSE){
 
-                            if($this->db->insert('instagram', $insert_data)){
-                                // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
-                                $totalInserted++;
-                            }else{
-                                echo ' | Error: ' . $this->db->error() . '<br>';
+                                $insert_data = array(
+                                    'user_username'         => $value->user->username,
+                                    'user_full_name'        => $value->user->full_name,
+                                    'user_profile_picture'  => $value->user->profile_picture,
+                                    'user_id'               => $value->user->id,
+                                    'location_latitude'     => $value->location->latitude,
+                                    'location_longitude'    => $value->location->longitude,
+                                    'location_name'         => $value->location->name,
+                                    'tags'                  => $tags_str,
+                                    'caption_text'          => $caption_text,
+                                    'created_time'          => date('Y-m-d H:i:s', $value->created_time),
+                                    'link'                  => $value->link,
+                                    'instagram_id'          => $value->id,
+                                    'date_added'            => date('Y-m-d H:i:s')
+                                );
+
+                                if($this->db->insert('instagram', $insert_data)){
+                                    // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
+                                    $totalInserted++;
+                                }else{
+                                    echo ' | Error: ' . $this->db->error() . '<br>';
+                                }
+
                             }
 
                         }
