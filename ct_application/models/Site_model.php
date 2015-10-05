@@ -488,7 +488,7 @@ class Site_model extends CI_Model{
             // echo '<br>---------------------------------------- ';
 
             // if country code is canada, insert it to the database
-            if(strtoupper($value->place->country_code) === "CA"){
+            // if(strtoupper($value->place->country_code) === "CA"){
 
                 // make sure the tweet hasn't already been added to db
                 // $sql = "SELECT * FROM tweets WHERE tweet_id = '" . $value->id . "'";
@@ -524,7 +524,7 @@ class Site_model extends CI_Model{
                     }
                 }
 
-            } // if($value->place->country_code === "CA"){
+            // } // if($value->place->country_code === "CA"){
 
         } // foreach($result_obj->statuses as $key => $value){
 
