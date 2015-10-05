@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <header class="row">
         <div class="small-12 medium-8 medium-offset-2 columns">
-            <h1>#ComeTogether Map</h1>
+            <h1>#ComeTogether Mapx</h1>
             <p>A collection of Instagram and Twitter content tagged with the #cometogether hashtag. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
         </div>
     </header>
