@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Coustard);
 /* line 364, ../bower_components/foundation/scss/foundation/components/_global.scss */
 meta.foundation-version {
   font-family: "/5.5.2/";
@@ -9884,19 +9885,41 @@ th {
 body {
   margin: 0;
   padding: 0;
+}
+
+/* line 10, ../scss/styles/base.scss */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  padding: 0;
+  font-family: 'Coustard', sans-serif;
+  text-align: center;
+}
+
+/* line 17, ../scss/styles/base.scss */
+p {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+/* line 25, ../scss/styles/base.scss */
+header {
+  padding: 80px 0;
+}
+
+/* ==========================================================================
+   Map
+   ========================================================================== */
+/* line 34, ../scss/styles/base.scss */
+#map {
+  width: 100%;
+  height: 100%;
   background: #73B6E6;
 }
 
-/* line 11, ../scss/styles/base.scss */
-#map {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* line 19, ../scss/styles/base.scss */
+/* line 43, ../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -9909,7 +9932,7 @@ body {
   color: #fff;
 }
 
-/* line 31, ../scss/styles/base.scss */
+/* line 55, ../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -9922,13 +9945,13 @@ body {
   color: #fff;
 }
 
-/* line 45, ../scss/styles/base.scss */
+/* line 69, ../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 50, ../scss/styles/base.scss */
+/* line 74, ../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -9936,7 +9959,7 @@ body {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 60, ../scss/styles/base.scss */
+/* line 84, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -9949,15 +9972,15 @@ body {
   color: #fff;
   background: pink;
 }
-/* line 71, ../scss/styles/base.scss */
+/* line 95, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 74, ../scss/styles/base.scss */
+/* line 98, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 77, ../scss/styles/base.scss */
+/* line 101, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
