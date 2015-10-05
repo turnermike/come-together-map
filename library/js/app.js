@@ -54,11 +54,11 @@ window.ComeTogether = window.ComeTogether || {};
                 .setView([52.514457, -99.546737], 4);
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
-// Disable drag and zoom handlers.
-// map.dragging.disable();
-// map.touchZoom.disable();
-// map.doubleClickZoom.disable();
-map.scrollWheelZoom.disable();
+                // Disable drag and zoom handlers.
+                // map.dragging.disable();
+                map.touchZoom.disable();
+                // map.doubleClickZoom.disable();
+                map.scrollWheelZoom.disable();
 
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
 
@@ -103,6 +103,8 @@ map.scrollWheelZoom.disable();
 
                     // console.log('geojson', data);
 
+                    $('.twitter-status').html('Loading instagram...');
+
                     var geojson = L.geoJson(data, {
 
                         onEachFeature: function (feature, layer) {
@@ -130,6 +132,7 @@ map.scrollWheelZoom.disable();
                     // .setView([52.514457, -99.546737], 4);
                     baseLayer.addTo(map);
                     twitter_markers.addTo(map);
+                    $('.twitter-status').html('');
 
                 });
 
@@ -137,6 +140,8 @@ map.scrollWheelZoom.disable();
                 $.getJSON("site/populate_map_instagrams", function(data) {
 
                     // console.log('geojson', data);
+
+                    $('.instagram-status').html('Loading instagram...');
 
                     var geojson = L.geoJson(data, {
 
@@ -165,6 +170,7 @@ map.scrollWheelZoom.disable();
                     // .setView([52.514457, -99.546737], 4);
                     baseLayer.addTo(map);
                     instagram_markers.addTo(map);
+                    $('.instagram-status').html('');
 
                 });
 
