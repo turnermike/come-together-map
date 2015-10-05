@@ -20,7 +20,10 @@ class Site extends CI_Controller {
     public function get_tweets_west(){
 
         $this->load->model('site_model');
-        $tweets = $this->site_model->get_tweets_west();
+        $latitude = '55.508330';
+        $longitude = '-120.157088';
+        $distance = '2000km';
+        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
