@@ -56,13 +56,13 @@ window.ComeTogether = window.ComeTogether || {};
 
                 // Disable drag and zoom handlers.
                 map.dragging.disable();
-                // map.touchZoom.disable();
+                map.touchZoom.disable();
                 // map.doubleClickZoom.disable();
                 map.scrollWheelZoom.disable();
 
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
 
-                $('.twitter-status').html('Loading instagram...');
+                $('.twitter-status').html('Loading twitter...');
                 $('.instagram-status').html('Loading instagram...');
 
                 // var map = L.map('map', 'leatherface416.njcm6oc3')
