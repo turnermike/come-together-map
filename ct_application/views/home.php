@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </footer>
 
-    <input type="hidden" id="txtDebug" name="txtDebug" value="true" />
+    <input type="hidden" id="txtDebug" name="txtDebug" value="false" />
 
     <script src="library/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="library/bower_components/foundation/js/foundation.min.js"></script>
@@ -60,7 +60,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
         ga('create', 'UA-68480188-1', 'auto');
         ga('send', 'pageview');
     </script>

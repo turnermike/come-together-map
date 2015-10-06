@@ -32,7 +32,8 @@ window.ComeTogether = window.ComeTogether || {};
                 this.elements.debug = $('#txtDebug', this.elements.body);
 
                 // configure debug based on config file
-                if (this.elements.debug.val()) {
+                if (this.elements.debug.val() === true) {
+                    console.log('testing');
                     this.settings.debug = true;
                     this.initDebug();
                 }
