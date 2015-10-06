@@ -316,10 +316,10 @@ class Site_model extends CI_Model{
             $data = json_decode(curl_exec($curl_connection));
             curl_close($curl_connection);
 
-            // dump all of it
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
+            // // dump all of it
+            // echo "<pre>";
+            // var_dump($data);
+            // echo "</pre>";
 
             // // dump a single instagram
             // echo "<pre>";
