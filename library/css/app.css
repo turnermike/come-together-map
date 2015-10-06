@@ -9937,7 +9937,14 @@ footer p {
   background: #73B6E6;
 }
 
-/* line 59, ../scss/styles/base.scss */
+/* line 61, ../scss/styles/base.scss */
+.twitter-status .loader,
+.instagram-status .loader {
+  position: relative;
+  top: -2px;
+}
+
+/* line 67, ../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -9950,7 +9957,7 @@ footer p {
   color: #fff;
 }
 
-/* line 71, ../scss/styles/base.scss */
+/* line 79, ../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -9963,20 +9970,13 @@ footer p {
   color: #fff;
 }
 
-/* line 86, ../scss/styles/base.scss */
-.twitter-status .loader,
-.instagram-status .loader {
-  position: relative;
-  top: -2px;
-}
-
-/* line 93, ../scss/styles/base.scss */
+/* line 100, ../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 98, ../scss/styles/base.scss */
+/* line 105, ../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -9984,7 +9984,7 @@ footer p {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 108, ../scss/styles/base.scss */
+/* line 115, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -9997,15 +9997,15 @@ footer p {
   color: #fff;
   background: pink;
 }
-/* line 119, ../scss/styles/base.scss */
+/* line 126, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 122, ../scss/styles/base.scss */
+/* line 129, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 125, ../scss/styles/base.scss */
+/* line 132, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

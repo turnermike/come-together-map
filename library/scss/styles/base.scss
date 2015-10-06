@@ -56,6 +56,14 @@ footer{
     background: #73B6E6;
 }
 
+.twitter-status,
+.instagram-status{
+    .loader{
+        position: relative;
+        top: -2px;
+    }
+}
+
 .twitterClusterMarker{
     margin: 0;
     padding: 23px 0 0 0;
@@ -81,15 +89,14 @@ footer{
     color: #fff;
 }
 
-.twitter-status,
-.instagram-status{
-    .loader{
-        position: relative;
-        top: -2px;
-    }
+.leaflet-popup{
+
+
 }
 
 .leaflet-popup-content{
+
+
     .image{
         display: block;
         margin: 0 auto;
