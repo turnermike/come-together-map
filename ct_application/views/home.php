@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        <body>
     <!--<![endif]-->
 
-    <header class="row">
+    <header class="site-header row">
         <div class="small-12 medium-8 medium-offset-2 columns">
             <h1>#ComeTogether Map</h1>
             <p>A collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
@@ -47,7 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </footer>
 
-    <div style="height:800px"></div>
 
     <input type="hidden" id="txtDebug" name="txtDebug" value="false" />
 
@@ -57,8 +56,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-zoomslider/v0.7.0/L.Control.Zoomslider.js'></script>
     <script src="library/js/app.js"></script>
-
-
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

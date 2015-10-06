@@ -44,6 +44,8 @@ window.ComeTogether = window.ComeTogether || {};
                 // initialize map
                 this.initMap();
 
+                // $('.site-header').sticky({});
+
 
             },
 
