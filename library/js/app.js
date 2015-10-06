@@ -69,7 +69,6 @@ window.ComeTogether = window.ComeTogether || {};
                 // if is medium up, center the popup
                 if(Foundation.utils.is_medium_up()){
                     // center popup on click
-                    alert("medium up");
                     map.on('popupopen', function(e) {
                         var px = map.project(e.popup._latlng); // find the pixel location on the map where the popup anchor is
                         px.y -= (e.popup._container.clientHeight/2); // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
