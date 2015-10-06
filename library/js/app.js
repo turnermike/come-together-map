@@ -55,7 +55,7 @@ window.ComeTogether = window.ComeTogether || {};
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
                 // Disable drag and zoom handlers.
-                map.dragging.disable();
+                // map.dragging.disable();
                 map.touchZoom.disable();
                 // map.doubleClickZoom.disable();
                 map.scrollWheelZoom.disable();
