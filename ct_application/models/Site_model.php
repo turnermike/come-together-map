@@ -280,7 +280,6 @@ class Site_model extends CI_Model{
         $client_id = $this->config->item('instagram_client_id', 'instagram_api');
 
         $hashtag = 'cometogether';
-        // $hashtags = array('cometogether', 'bluejays');
         $query = array(
             'client_id' => $client_id,
             'count' => '33'
@@ -317,10 +316,10 @@ class Site_model extends CI_Model{
             $data = json_decode(curl_exec($curl_connection));
             curl_close($curl_connection);
 
-            // // dump all of it
-            // echo "<pre>";
-            // var_dump($data);
-            // echo "</pre>";
+            // dump all of it
+            echo "<pre>";
+            var_dump($data);
+            echo "</pre>";
 
             // // dump a single instagram
             // echo "<pre>";
