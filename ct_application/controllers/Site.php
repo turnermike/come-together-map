@@ -17,7 +17,7 @@ class Site extends CI_Controller {
 
     }
 
-    public function get_tweets_west(){
+    public function get_tweets_north_west(){
 
         $this->load->model('site_model');
         $latitude = '55.508330';
@@ -27,7 +27,7 @@ class Site extends CI_Controller {
 
     }
 
-    public function get_tweets_central(){
+    public function get_tweets_north_central(){
 
         $this->load->model('site_model');
         $latitude = '51.759246';
@@ -37,7 +37,7 @@ class Site extends CI_Controller {
 
     }
 
-    public function get_tweets_east(){
+    public function get_tweets_north_east(){
 
         $this->load->model('site_model');
         $latitude = '51.541116';
@@ -46,6 +46,37 @@ class Site extends CI_Controller {
         $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
+
+    public function get_tweets_south_west(){
+
+        $this->load->model('site_model');
+        $latitude = '40.457695';
+        $longitude = '-114.944543';
+        $distance = '2000km';
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
+
+    }
+
+    public function get_tweets_south_central(){
+
+        $this->load->model('site_model');
+        $latitude = '40.757957';
+        $longitude = '-100.178918';
+        $distance = '3500km';
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
+
+    }
+
+    public function get_tweets_south_east(){
+
+        $this->load->model('site_model');
+        $latitude = '38.867819';
+        $longitude = '-84.007045';
+        $distance = '2000km';
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
+
+    }
+
 
     public function get_instagram(){
 
