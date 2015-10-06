@@ -43,6 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="addthis_sharing_toolbox"></div>
             <p class="twitter-status"></p>
             <p class="instagram-status"></p>
+
         </div>
     </header>
 

@@ -140,7 +140,8 @@ window.ComeTogether = window.ComeTogether || {};
 
                     // baseLayer.addTo(map);
                     twitter_markers.addTo(map);
-                    $('.twitter-status').html('');
+                    // $('.twitter-status').html('');
+                    $('.twitter-status').remove();
 
                 });
 
@@ -176,7 +177,8 @@ window.ComeTogether = window.ComeTogether || {};
                     // .setView([52.514457, -99.546737], 4);
                     // baseLayer.addTo(map);
                     instagram_markers.addTo(map);
-                    $('.instagram-status').html('');
+                    // $('.instagram-status').html('');
+                    $('.instagram-status').remove();
 
                 });
 
