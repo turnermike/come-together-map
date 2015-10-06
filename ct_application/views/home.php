@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <header class="row">
         <div class="small-12 medium-8 medium-offset-2 columns">
             <h1>#ComeTogether Map</h1>
-            <p>A collection of Instagram and Twitter content tagged with the #cometogether hashtag. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
+            <p>A collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
             <p class="twitter-status"></p>
             <p class="instagram-status"></p>
         </div>
@@ -46,6 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a>
         </div>
     </footer>
+
+    <div style="height:800px"></div>
 
     <input type="hidden" id="txtDebug" name="txtDebug" value="false" />
 
