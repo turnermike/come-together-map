@@ -21,25 +21,40 @@ p {
   padding: 0;
 }
 
+/* line 22, ../../scss/styles/base.scss */
+a {
+  color: #000;
+}
+
 /* ==========================================================================
    Header
    ========================================================================== */
-/* line 25, ../../scss/styles/base.scss */
+/* line 29, ../../scss/styles/base.scss */
 header {
   padding: 80px 0;
 }
 
 /* ==========================================================================
+   Footer
+   ========================================================================== */
+/* line 36, ../../scss/styles/base.scss */
+footer {
+  padding: 80px 0;
+  font-size: 0.688em;
+  text-align: center;
+}
+
+/* ==========================================================================
    Map
    ========================================================================== */
-/* line 34, ../../scss/styles/base.scss */
+/* line 47, ../../scss/styles/base.scss */
 #map {
   width: 100%;
   height: 100%;
   background: #73B6E6;
 }
 
-/* line 43, ../../scss/styles/base.scss */
+/* line 56, ../../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -52,7 +67,7 @@ header {
   color: #fff;
 }
 
-/* line 55, ../../scss/styles/base.scss */
+/* line 68, ../../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -65,13 +80,13 @@ header {
   color: #fff;
 }
 
-/* line 69, ../../scss/styles/base.scss */
+/* line 82, ../../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 74, ../../scss/styles/base.scss */
+/* line 87, ../../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -79,7 +94,7 @@ header {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 84, ../../scss/styles/base.scss */
+/* line 97, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -92,15 +107,15 @@ header {
   color: #fff;
   background: pink;
 }
-/* line 95, ../../scss/styles/base.scss */
+/* line 108, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 98, ../../scss/styles/base.scss */
+/* line 111, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 101, ../../scss/styles/base.scss */
+/* line 114, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

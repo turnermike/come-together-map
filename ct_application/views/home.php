@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144.png" />
     <link rel="icon" href="library/images/favicon.ico">
     -->
-    <title>#ComeTogether Canada</title>
+    <title>#ComeTogether Map</title>
     <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
@@ -39,6 +39,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </header>
 
     <div id="map"></div>
+
+    <footer class="row">
+        <div class="small-12 medium-8 medium-offset-2 columns">
+            <a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a>
+        </div>
+    </footer>
 
     <input type="hidden" id="txtDebug" name="txtDebug" value="true" />
 
