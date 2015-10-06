@@ -34,11 +34,15 @@ header{
    Footer
    ========================================================================== */
 footer{
-    padding: 5% 0;
+    padding: 2% 0;
     // font-size: 0.688em;
     text-align: center;
     p{
+        margin-bottom: 5px;
         font-size: 0.688em;
+        &:last-child{
+            margin-bottom: 0;
+        }
     }
 }
 

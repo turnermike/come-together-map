@@ -39,32 +39,37 @@ header {
    ========================================================================== */
 /* line 36, ../../scss/styles/base.scss */
 footer {
-  padding: 5% 0;
+  padding: 2% 0;
   text-align: center;
 }
 /* line 40, ../../scss/styles/base.scss */
 footer p {
+  margin-bottom: 5px;
   font-size: 0.688em;
+}
+/* line 43, ../../scss/styles/base.scss */
+footer p:last-child {
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
    Map
    ========================================================================== */
-/* line 50, ../../scss/styles/base.scss */
+/* line 54, ../../scss/styles/base.scss */
 #map {
   width: 100%;
   height: 60%;
   background: #73B6E6;
 }
 
-/* line 61, ../../scss/styles/base.scss */
+/* line 65, ../../scss/styles/base.scss */
 .twitter-status .loader,
 .instagram-status .loader {
   position: relative;
   top: -2px;
 }
 
-/* line 67, ../../scss/styles/base.scss */
+/* line 71, ../../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -77,7 +82,7 @@ footer p {
   color: #fff;
 }
 
-/* line 79, ../../scss/styles/base.scss */
+/* line 83, ../../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -90,13 +95,13 @@ footer p {
   color: #fff;
 }
 
-/* line 100, ../../scss/styles/base.scss */
+/* line 104, ../../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 105, ../../scss/styles/base.scss */
+/* line 109, ../../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -104,7 +109,7 @@ footer p {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 115, ../../scss/styles/base.scss */
+/* line 119, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -117,15 +122,15 @@ footer p {
   color: #fff;
   background: pink;
 }
-/* line 126, ../../scss/styles/base.scss */
+/* line 130, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 129, ../../scss/styles/base.scss */
+/* line 133, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 132, ../../scss/styles/base.scss */
+/* line 136, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
