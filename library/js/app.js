@@ -51,9 +51,13 @@ window.ComeTogether = window.ComeTogether || {};
 
                 if(this.settings.debug){ console.log('initMap()'); };
 
-                var map = L.map('map', 'leatherface416.njcm6oc3')
-                .setView([52.514457, -99.546737], 4);
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
+
+                var map = L.map('map', { zoomControl: false }).setView([52.514457, -99.546737], 4);
+
+
+                // add leaflet zoom slider
+                L.control.zoomslider().addTo(map);
 
                 // Disable drag and zoom handlers.
                 // map.dragging.disable();
@@ -62,6 +66,7 @@ window.ComeTogether = window.ComeTogether || {};
                 map.scrollWheelZoom.disable();
 
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
+                baseLayer.addTo(map)
 
                 $('.twitter-status').html('Loading twitter...');
                 $('.instagram-status').html('Loading instagram...');
@@ -123,16 +128,7 @@ window.ComeTogether = window.ComeTogether || {};
                     });
                     twitter_markers.addLayer(geojson);
 
-
-                    // // example of passing options
-                    // var map = L.map('map', {maxZoom: 9}).fitBounds(twitter_markers.getBounds());
-                    // // set the view outter boundries to the available twitter_markers
-                    // var map = L.map('map').fitBounds(twitter_markers.getBounds());
-
-
-                    // var map = L.map('map', 'leatherface416.njcm6oc3')
-                    // .setView([52.514457, -99.546737], 4);
-                    baseLayer.addTo(map);
+                    // baseLayer.addTo(map);
                     twitter_markers.addTo(map);
                     $('.twitter-status').html('');
 
@@ -168,7 +164,7 @@ window.ComeTogether = window.ComeTogether || {};
 
                     // var map = L.map('map', 'leatherface416.njcm6oc3')
                     // .setView([52.514457, -99.546737], 4);
-                    baseLayer.addTo(map);
+                    // baseLayer.addTo(map);
                     instagram_markers.addTo(map);
                     $('.instagram-status').html('');
 
