@@ -44,8 +44,6 @@ window.ComeTogether = window.ComeTogether || {};
                 // initialize map
                 this.initMap();
 
-                // $('.site-header').sticky({});
-
 
             },
 
@@ -70,12 +68,9 @@ window.ComeTogether = window.ComeTogether || {};
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
                 baseLayer.addTo(map)
 
-                $('.twitter-status').html('Loading twitter...');
-                $('.instagram-status').html('Loading instagram...');
-
-                // var map = L.map('map', 'leatherface416.njcm6oc3')
-                // .setView([52.514457, -99.546737], 4);
-                // baseLayer.addTo(map);
+                // set loading messages
+                $('.twitter-status').html('<img src="library/images/ajax-loader.gif" alt="loading..." class="loader" /> Loading twitter...');
+                $('.instagram-status').html('<img src="library/images/ajax-loader.gif" alt="loading..." class="loader" /> Loading instagram...');
 
                 // define twitter cluster layer markers
                 var twitter_markers = L.markerClusterGroup({

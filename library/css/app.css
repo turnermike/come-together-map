@@ -9963,13 +9963,20 @@ footer p {
   color: #fff;
 }
 
-/* line 85, ../scss/styles/base.scss */
+/* line 86, ../scss/styles/base.scss */
+.twitter-status .loader,
+.instagram-status .loader {
+  position: relative;
+  top: -2px;
+}
+
+/* line 93, ../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 90, ../scss/styles/base.scss */
+/* line 98, ../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -9977,7 +9984,7 @@ footer p {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 100, ../scss/styles/base.scss */
+/* line 108, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -9990,15 +9997,15 @@ footer p {
   color: #fff;
   background: pink;
 }
-/* line 111, ../scss/styles/base.scss */
+/* line 119, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 114, ../scss/styles/base.scss */
+/* line 122, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 117, ../scss/styles/base.scss */
+/* line 125, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

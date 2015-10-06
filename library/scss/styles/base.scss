@@ -81,6 +81,14 @@ footer{
     color: #fff;
 }
 
+.twitter-status,
+.instagram-status{
+    .loader{
+        position: relative;
+        top: -2px;
+    }
+}
+
 .leaflet-popup-content{
     .image{
         display: block;
