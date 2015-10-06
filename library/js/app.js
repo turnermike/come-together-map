@@ -62,6 +62,9 @@ window.ComeTogether = window.ComeTogether || {};
 
                 var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/leatherface416.njcm6oc3/{z}/{x}/{y}.png', {});
 
+                $('.twitter-status').html('Loading instagram...');
+                $('.instagram-status').html('Loading instagram...');
+
                 // var map = L.map('map', 'leatherface416.njcm6oc3')
                 // .setView([52.514457, -99.546737], 4);
                 // baseLayer.addTo(map);
@@ -103,8 +106,6 @@ window.ComeTogether = window.ComeTogether || {};
 
                     // console.log('geojson', data);
 
-                    $('.twitter-status').html('Loading instagram...');
-
                     var geojson = L.geoJson(data, {
 
                         onEachFeature: function (feature, layer) {
@@ -140,8 +141,6 @@ window.ComeTogether = window.ComeTogether || {};
                 $.getJSON("site/populate_map_instagrams", function(data) {
 
                     // console.log('geojson', data);
-
-                    $('.instagram-status').html('Loading instagram...');
 
                     var geojson = L.geoJson(data, {
 
