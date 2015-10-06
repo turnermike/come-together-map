@@ -35,8 +35,11 @@ header{
    ========================================================================== */
 footer{
     padding: 5% 0;
-    font-size: 0.688em;
+    // font-size: 0.688em;
     text-align: center;
+    p{
+        font-size: 0.688em;
+    }
 }
 
 

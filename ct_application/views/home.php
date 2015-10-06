@@ -7,6 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no" />
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
+    <meta property="og:title" content="#ComeTogether Map" />
+    <meta property="og:site_name" content="#ComeTogether Map" />
+    <meta property="og:url" content="http://cometogethermap.com" />
+    <meta property="og:description" content="A collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices." />
     <!--
     <link rel="apple-touch-icon" href="apple-touch-icon-57.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72.png" />
@@ -34,6 +38,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="small-12 medium-8 medium-offset-2 columns">
             <h1>#ComeTogether Map</h1>
             <p>A collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50085eb25dded89d" async="async"></script>
+            <div class="addthis_sharing_toolbox"></div>
             <p class="twitter-status"></p>
             <p class="instagram-status"></p>
         </div>
@@ -43,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <footer class="row">
         <div class="small-12 medium-8 medium-offset-2 columns">
-            <a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a>
+            <p><a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a></p>
+            <p>#cometogethermap</p>
         </div>
     </footer>
 

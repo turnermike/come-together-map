@@ -9920,21 +9920,24 @@ header {
 /* line 36, ../scss/styles/base.scss */
 footer {
   padding: 5% 0;
-  font-size: 0.688em;
   text-align: center;
+}
+/* line 40, ../scss/styles/base.scss */
+footer p {
+  font-size: 0.688em;
 }
 
 /* ==========================================================================
    Map
    ========================================================================== */
-/* line 47, ../scss/styles/base.scss */
+/* line 50, ../scss/styles/base.scss */
 #map {
   width: 100%;
   height: 60%;
   background: #73B6E6;
 }
 
-/* line 56, ../scss/styles/base.scss */
+/* line 59, ../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -9947,7 +9950,7 @@ footer {
   color: #fff;
 }
 
-/* line 68, ../scss/styles/base.scss */
+/* line 71, ../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -9960,13 +9963,13 @@ footer {
   color: #fff;
 }
 
-/* line 82, ../scss/styles/base.scss */
+/* line 85, ../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 87, ../scss/styles/base.scss */
+/* line 90, ../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -9974,7 +9977,7 @@ footer {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 97, ../scss/styles/base.scss */
+/* line 100, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -9987,15 +9990,15 @@ footer {
   color: #fff;
   background: pink;
 }
-/* line 108, ../scss/styles/base.scss */
+/* line 111, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 111, ../scss/styles/base.scss */
+/* line 114, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 114, ../scss/styles/base.scss */
+/* line 117, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
