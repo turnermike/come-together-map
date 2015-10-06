@@ -23,7 +23,7 @@ class Site extends CI_Controller {
         $latitude = '55.508330';
         $longitude = '-120.157088';
         $distance = '2000km';
-        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
@@ -33,7 +33,7 @@ class Site extends CI_Controller {
         $latitude = '51.759246';
         $longitude = '-91.328963';
         $distance = '3500km';
-        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
@@ -43,22 +43,30 @@ class Site extends CI_Controller {
         $latitude = '51.541116';
         $longitude = '-65.840683';
         $distance = '2000km';
-        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
-
-    }
-
-    public function populate_map_tweets(){
-
-        $this->load->model('site_model');
-        $tweets = $this->site_model->populate_map_tweets();
-        echo json_encode($tweets);
+        $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
     public function get_instagram(){
 
         $this->load->model('site_model');
-        $instagram = $this->site_model->get_instagram();
+        $this->site_model->get_instagram();
+
+    }
+
+    // public function get_facebook(){
+
+    //     $this->load->model('site_model');
+    //     // $fb = $this->site_model->get_facebook();
+    //     $this->load->view('get_facebook');
+
+    // }
+
+    public function populate_map_tweets(){
+
+        $this->load->model('site_model');
+        $tweets = $this->site_model->populate_map_tweets();
+        echo json_encode($tweets);
 
     }
 
