@@ -4,23 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Site_model extends CI_Model{
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     function populate_map_tweets(){
 
         $query = $this->db->get('tweets');
@@ -67,17 +50,6 @@ class Site_model extends CI_Model{
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     function populate_map_instagrams(){
@@ -130,32 +102,6 @@ class Site_model extends CI_Model{
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -340,15 +286,6 @@ class Site_model extends CI_Model{
         }
 
     }
-
-
-
-
-
-
-
-
-
 
 
     function get_tweets($latitude, $longitude, $distance){
