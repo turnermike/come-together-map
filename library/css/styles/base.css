@@ -9,7 +9,7 @@ body {
 
 /* line 10, ../../scss/styles/base.scss */
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   padding: 0;
   font-family: 'Coustard', sans-serif;
   text-align: center;
@@ -21,33 +21,48 @@ p {
   padding: 0;
 }
 
-/* line 22, ../../scss/styles/base.scss */
-a {
-  color: #000;
-}
-
 /* ==========================================================================
    Header
    ========================================================================== */
 /* line 29, ../../scss/styles/base.scss */
-header {
+header.site-header {
   padding: 2% 0;
+}
+/* line 33, ../../scss/styles/base.scss */
+header.site-header .twitter-status .loader,
+header.site-header .instagram-status .loader {
+  position: relative;
+  top: -2px;
+}
+/* line 38, ../../scss/styles/base.scss */
+header.site-header .minimize {
+  float: right;
+  font-size: 0.668em;
+}
+/* line 43, ../../scss/styles/base.scss */
+header.site-header.minimized h1 {
+  margin-bottom: 0;
+}
+/* line 46, ../../scss/styles/base.scss */
+header.site-header.minimized p,
+header.site-header.minimized .addthis_sharing_toolbox {
+  display: none;
 }
 
 /* ==========================================================================
    Footer
    ========================================================================== */
-/* line 36, ../../scss/styles/base.scss */
+/* line 57, ../../scss/styles/base.scss */
 footer {
   padding: 2% 0;
   text-align: center;
 }
-/* line 40, ../../scss/styles/base.scss */
+/* line 61, ../../scss/styles/base.scss */
 footer p {
   margin-bottom: 5px;
   font-size: 0.688em;
 }
-/* line 43, ../../scss/styles/base.scss */
+/* line 64, ../../scss/styles/base.scss */
 footer p:last-child {
   margin-bottom: 0;
 }
@@ -55,21 +70,14 @@ footer p:last-child {
 /* ==========================================================================
    Map
    ========================================================================== */
-/* line 54, ../../scss/styles/base.scss */
+/* line 75, ../../scss/styles/base.scss */
 #map {
   width: 100%;
   height: 60%;
   background: #73B6E6;
 }
 
-/* line 65, ../../scss/styles/base.scss */
-.twitter-status .loader,
-.instagram-status .loader {
-  position: relative;
-  top: -2px;
-}
-
-/* line 71, ../../scss/styles/base.scss */
+/* line 84, ../../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -82,7 +90,7 @@ footer p:last-child {
   color: #fff;
 }
 
-/* line 83, ../../scss/styles/base.scss */
+/* line 96, ../../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -95,13 +103,13 @@ footer p:last-child {
   color: #fff;
 }
 
-/* line 104, ../../scss/styles/base.scss */
+/* line 117, ../../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 109, ../../scss/styles/base.scss */
+/* line 122, ../../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -109,7 +117,7 @@ footer p:last-child {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 119, ../../scss/styles/base.scss */
+/* line 132, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -122,15 +130,15 @@ footer p:last-child {
   color: #fff;
   background: pink;
 }
-/* line 130, ../../scss/styles/base.scss */
+/* line 143, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 133, ../../scss/styles/base.scss */
+/* line 146, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 136, ../../scss/styles/base.scss */
+/* line 149, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

@@ -32,7 +32,7 @@ window.ComeTogether = window.ComeTogether || {};
                 this.elements.debug = $('#txtDebug', this.elements.body);
 
                 // configure debug based on config file
-                if (this.elements.debug.val() === true) {
+                if (this.elements.debug.val() === 'true') {
                     console.log('testing');
                     this.settings.debug = true;
                     this.initDebug();
@@ -42,7 +42,10 @@ window.ComeTogether = window.ComeTogether || {};
                 $(document).foundation();
 
                 // initialize map
-                this.initMap();
+                var map = this.initMap();
+
+                // initialize header
+                // this.initHeader(map);
 
 
             },
@@ -54,6 +57,7 @@ window.ComeTogether = window.ComeTogether || {};
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
                 var map = L.map('map', { zoomControl: false }).setView([52.514457, -99.546737], 4);
+                this.settings.map_obj = map;
 
 
                 // add leaflet zoom slider
@@ -64,7 +68,6 @@ window.ComeTogether = window.ComeTogether || {};
                 map.touchZoom.disable();
                 // map.doubleClickZoom.disable();
                 map.scrollWheelZoom.disable();
-
 
                 // if is medium up, center the popup
                 if(Foundation.utils.is_medium_up()){
@@ -182,40 +185,45 @@ window.ComeTogether = window.ComeTogether || {};
 
                 });
 
+                return map;
+
+            },
+
+
+            initHeader: function (map) {
+
+                if(this.settings.debug){ console.log('initHeader()'); };
+
+                var MAP = map;
+
+                $('.minimize a', 'header').on('click', function(e){
+
+                    e.preventDefault();
+
+                    $('.site-header').addClass('minimized');
+
+                    // set the map height
+                    // get the window height
+                    var window_height = $(window).height();
+                    var header_height = $('.site-header').height();
+                    var footer_height = $('.site-footer').height();
+
+                    var new_map_height = window_height - (header_height + footer_height);
+
+                    console.log('wh: ' + window_height);
+                    console.log('hh: ' + header_height);
+                    console.log('fh: ' + footer_height);
+                    console.log('new: ' + new_map_height);
+
+                    $('#map').height(new_map_height);
+
+                    window.setTimeout(function(MAP){
+                        MAP.updateSize();
+                    }, 1000);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                })
 
             },
 

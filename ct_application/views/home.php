@@ -43,21 +43,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="addthis_sharing_toolbox"></div>
             <p class="twitter-status"></p>
             <p class="instagram-status"></p>
+            <!-- <p class="minimize"><a href="#">minimize this header</a></p> -->
 
         </div>
     </header>
 
     <div id="map"></div>
 
-    <footer class="row">
+    <footer class="site-footer row">
         <div class="small-12 medium-8 medium-offset-2 columns">
-            <p><a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a></p>
-            <p>#cometogethermap</p>
+            <p><a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a> | #cometogethermap</p>
         </div>
     </footer>
 
 
-    <input type="hidden" id="txtDebug" name="txtDebug" value="false" />
+    <input type="hidden" id="txtDebug" name="txtDebug" value="true" />
 
     <script src="library/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="library/bower_components/foundation/js/foundation.min.js"></script>
