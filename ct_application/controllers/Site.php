@@ -30,14 +30,20 @@ class Site extends CI_Controller {
     public function get_tweets_central(){
 
         $this->load->model('site_model');
-        $tweets = $this->site_model->get_tweets_central();
+        $latitude = '51.759246';
+        $longitude = '-91.328963';
+        $distance = '3500km';
+        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
     public function get_tweets_east(){
 
         $this->load->model('site_model');
-        $tweets = $this->site_model->get_tweets_east();
+        $latitude = '51.541116';
+        $longitude = '-65.840683';
+        $distance = '2000km';
+        $tweets = $this->site_model->get_tweets($latitude, $longitude, $distance);
 
     }
 
