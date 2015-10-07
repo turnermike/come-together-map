@@ -114,5 +114,12 @@ class Site extends CI_Controller {
 
     }
 
+    public function clear_cache(){
+
+        $this->cache->file->clean();
+        echo 'cleared';
+
+    }
+
 
 }

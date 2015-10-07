@@ -61,7 +61,7 @@ class Site_model extends CI_Model{
 
 
 
-    function set_instagram_cache(){
+    function set_instagram_cache($forced_update = false){
 
 
         $query = $this->db->get('instagram');
@@ -110,8 +110,13 @@ class Site_model extends CI_Model{
 
             $this->cache->file->save('instagram_json', $geo_json, 14400); // 4 hours
 
+            if($forced_update){
+                header('Refresh:0');
+            }else{
+                echo '\nRecords Added: ' . $total;
+            }
 
-            echo '\nRecords Added: ' . $total;
+
             // echo '\nCache Result: ' . $result;
 
             // return $geo_json;
@@ -157,9 +162,15 @@ class Site_model extends CI_Model{
         // echo "</pre>";
 
         if($this->cache->file->get('instagram_json')){
-            return 'isset';
+
+            $data_obj = $this->cache->file->get('instagram_json');
+            return $data_obj;
+
         }else{
-            return 'no cache available';
+            // no cache set
+
+            $this->set_instagram_cache($forced_update = true);
+
         }
 
 
