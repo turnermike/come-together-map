@@ -84,12 +84,12 @@ class Site extends CI_Controller {
 
     }
 
-    public function get_instagram_cache(){
+    // public function get_instagram_cache(){
 
-        $this->load->model('site_model');
-        $this->site_model->get_instagram_cache();
+    //     $this->load->model('site_model');
+    //     $this->site_model->get_instagram_cache();
 
-    }
+    // }
 
     public function get_instagram(){
 
@@ -97,14 +97,6 @@ class Site extends CI_Controller {
         $this->site_model->get_instagram();
 
     }
-
-    // public function get_facebook(){
-
-    //     $this->load->model('site_model');
-    //     // $fb = $this->site_model->get_facebook();
-    //     $this->load->view('get_facebook');
-
-    // }
 
     public function populate_map_tweets(){
 

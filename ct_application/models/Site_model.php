@@ -103,15 +103,12 @@ class Site_model extends CI_Model{
             }
 
             // save to cache
-            // $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
-            // $result = $this->cache->save('instagram_json', $geo_json, 21600); // 21600 sec = 6 hours
 
-            $some_object = (object) NULL;
-            $some_object->test_property = 'testing 1234';
-            $this->cache->file->save('cache_key', $some_object, 120);
-            echo "<pre>";
-            var_dump($some_object);
-            echo "</pre>";
+            // $some_object = (object) NULL;
+            // $some_object->test_property = 'testing 1234';
+            // $this->cache->file->save('cache_key', $some_object, 120);
+
+            $this->cache->file->save('instagram_json', $geo_json, 14400); // 4 hours
 
 
             echo '\nRecords Added: ' . $total;
@@ -130,20 +127,17 @@ class Site_model extends CI_Model{
 
     }
 
-    function get_instagram_cache(){
+    // function get_instagram_cache(){
 
-        $this->load->driver('cache');
+    //     $this->load->driver('cache');
 
-        $val = $this->cache->file->get('cache_key');
+    //     $val = $this->cache->file->get('instagram_json');
 
-        echo "<pre>";
-        var_dump($val);
-        echo "</pre>";
+    //     echo "<pre>";
+    //     var_dump($val);
+    //     echo "</pre>";
 
-
-
-
-    }
+    // }
 
 
 
@@ -157,52 +151,68 @@ class Site_model extends CI_Model{
 
     function populate_map_instagrams(){
 
-        $query = $this->db->get('instagram');
 
-        if($query->num_rows()){
-            // all good
+        // echo "<pre>";
+        // var_dump($this->cache->file->get('instagram_json'));
+        // echo "</pre>";
 
-            $geo_json = array();
-            $total = 0;
-
-            foreach($query->result() as $key => $value){
-
-                // echo "<pre>";
-                // var_dump($value);
-                // echo "</pre>";
-
-                if(strpos($value->caption_text, 'jays') !== FALSE){
-
-                    $marker = array(
-                        'type' => 'Feature',
-                        'geometry' => array(
-                                            'type' => 'Point',
-                                            'coordinates' => array($value->location_longitude, $value->location_latitude)
-                        ),
-                        'properties' => array(
-                            'image' => $value->pic_standard_resolution,
-                            'screen_name' => $value->user_username,
-                            'tweet' => $value->caption_text,
-                            'hashtags' => $value->tags
-                        )
-                    );
-
-                    array_push($geo_json, $marker);
-
-                    $total++;
-
-                }
-
-            }
-
-            return $geo_json;
-
+        if($this->cache->file->get('instagram_json')){
+            return 'isset';
         }else{
-
-            $result = array('success' => false, 'message' => $this->db->error());
-            return $result;
-
+            return 'no cache available';
         }
+
+
+
+
+
+
+        // $query = $this->db->get('instagram');
+
+        // if($query->num_rows()){
+        //     // all good
+
+        //     $geo_json = array();
+        //     $total = 0;
+
+        //     foreach($query->result() as $key => $value){
+
+        //         // echo "<pre>";
+        //         // var_dump($value);
+        //         // echo "</pre>";
+
+        //         if(strpos($value->caption_text, 'jays') !== FALSE){
+
+        //             $marker = array(
+        //                 'type' => 'Feature',
+        //                 'geometry' => array(
+        //                                     'type' => 'Point',
+        //                                     'coordinates' => array($value->location_longitude, $value->location_latitude)
+        //                 ),
+        //                 'properties' => array(
+        //                     'image' => $value->pic_standard_resolution,
+        //                     'screen_name' => $value->user_username,
+        //                     'tweet' => $value->caption_text,
+        //                     'hashtags' => $value->tags
+        //                 )
+        //             );
+
+        //             array_push($geo_json, $marker);
+
+        //             $total++;
+
+        //         }
+
+        //     }
+
+        //     return $geo_json;
+
+        // }else{
+
+        //     $result = array('success' => false, 'message' => $this->db->error());
+        //     return $result;
+
+        // }
 
     }
 
