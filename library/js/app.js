@@ -150,12 +150,10 @@ window.ComeTogether = window.ComeTogether || {};
                 // call the geojson for tweets
                 $.getJSON("site/populate_map_instagrams", function(data) {
 
-                    console.log('data', data);
+                    // console.log('data', data);
 
                     if(data){
                         // we have info from the cache
-
-                        console.log('got data');
 
                         var geojson = L.geoJson(data, {
 
@@ -177,9 +175,7 @@ window.ComeTogether = window.ComeTogether || {};
                         $('.instagram-status').remove();
 
                     }else{
-                        // no cache data, reload
-
-                        console.log('no data');
+                        // no cache data, reload because
 
                         location.reload();
 
