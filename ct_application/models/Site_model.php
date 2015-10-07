@@ -52,6 +52,109 @@ class Site_model extends CI_Model{
     }
 
 
+
+
+
+
+
+
+
+
+
+    function set_instagram_cache(){
+
+
+        $query = $this->db->get('instagram');
+
+        if($query->num_rows()){
+            // all good
+
+            $geo_json = array();
+            $total = 0;
+
+            foreach($query->result() as $key => $value){
+
+                // echo "<pre>";
+                // var_dump($value);
+                // echo "</pre>";
+
+                if(strpos($value->caption_text, 'jays') !== FALSE){
+
+                    $marker = array(
+                        'type' => 'Feature',
+                        'geometry' => array(
+                                            'type' => 'Point',
+                                            'coordinates' => array($value->location_longitude, $value->location_latitude)
+                        ),
+                        'properties' => array(
+                            'image' => $value->pic_standard_resolution,
+                            'screen_name' => $value->user_username,
+                            'tweet' => $value->caption_text,
+                            'hashtags' => $value->tags
+                        )
+                    );
+
+                    array_push($geo_json, $marker);
+
+                    $total++;
+
+                }
+
+            }
+
+            // save to cache
+            // $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+            // $result = $this->cache->save('instagram_json', $geo_json, 21600); // 21600 sec = 6 hours
+
+            $some_object = (object) NULL;
+            $some_object->test_property = 'testing 1234';
+            $this->cache->file->save('cache_key', $some_object, 120);
+            echo "<pre>";
+            var_dump($some_object);
+            echo "</pre>";
+
+
+            echo '\nRecords Added: ' . $total;
+            // echo '\nCache Result: ' . $result;
+
+            // return $geo_json;
+
+        }else{
+
+            $result = array('success' => false, 'message' => $this->db->error());
+            return $result;
+
+        }
+
+
+
+    }
+
+    function get_instagram_cache(){
+
+        $this->load->driver('cache');
+
+        $val = $this->cache->file->get('cache_key');
+
+        echo "<pre>";
+        var_dump($val);
+        echo "</pre>";
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     function populate_map_instagrams(){
 
         $query = $this->db->get('instagram');
@@ -454,56 +557,5 @@ class Site_model extends CI_Model{
         }
 
     }
-
-
-
-    // function get_facebook(){
-
-    //     $this->load->library('facebook');
-
-    //     $access_token = $this->facebook->getAccessToken();
-    //     echo '<br>at: ' . $access_token;
-    //     // $result = $this->facebook->setAccessToken($access_token);
-    //     // echo "<pre>";
-    //     // var_dump($result);
-    //     // echo "</pre>";
-
-
-    //     // $url = 'https://graph.facebook.com/oauth/access_token';
-    //     // $token_params = array(
-    //     //     "type" => "client_cred",
-    //     //     "client_id" => '578196538998097',
-    //     //     "client_secret" => 'dfcdafa3b517c08c736bf03cf6abb714'
-    //     // );
-    //     // $ch = curl_init();
-    //     // curl_setopt($ch, CURLOPT_URL, $url);
-    //     // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    //     // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($token_params, null, '&'));
-    //     // $ret = curl_exec($ch);
-    //     // curl_close($ch);
-    //     // echo str_replace('access_token=', '', $ret);
-
-
-    //     // $data = $this->facebook->api('/search?q=cometogether&type=place&center=51.759246,-91.328963');
-    //     // $data = $this->facebook->api('/search?q=cometogether&type=post');
-
-    //     // echo "<pre>";
-    //     // var_dump($data);
-    //     // echo "</pre>";
-
-
-
-
-
-    // }
-
-
-
-
-
-
-
-
-
 
 }

@@ -77,6 +77,19 @@ class Site extends CI_Controller {
 
     }
 
+    public function set_instagram_cache(){
+
+        $this->load->model('site_model');
+        $this->site_model->set_instagram_cache();
+
+    }
+
+    public function get_instagram_cache(){
+
+        $this->load->model('site_model');
+        $this->site_model->get_instagram_cache();
+
+    }
 
     public function get_instagram(){
 
