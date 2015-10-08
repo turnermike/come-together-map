@@ -126,10 +126,12 @@ footer{
 
 .leaflet-popup-content{
 
+    width: 75%;
 
     .image{
         display: block;
         margin: 0 auto;
+        height: 140px;
         border: 2px solid #55acee;
     }
     .screen_name{

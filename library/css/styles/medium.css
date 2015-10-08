@@ -17,23 +17,35 @@ header.site-header .addthis_sharing_toolbox {
   display: block;
 }
 
-/* line 22, ../../scss/styles/medium.scss */
+/* ==========================================================================
+   Map
+   ========================================================================== */
+/* line 26, ../../scss/styles/medium.scss */
 #map {
   height: 100%;
+}
+
+/* line 30, ../../scss/styles/medium.scss */
+.leaflet-popup-content {
+  width: auto;
+}
+/* line 34, ../../scss/styles/medium.scss */
+.leaflet-popup-content .image {
+  height: auto;
 }
 
 /* ==========================================================================
    Debug Styles
    ========================================================================== */
-/* line 31, ../../scss/styles/medium.scss */
+/* line 44, ../../scss/styles/medium.scss */
 #debug-message {
   background: lightblue;
 }
-/* line 33, ../../scss/styles/medium.scss */
+/* line 46, ../../scss/styles/medium.scss */
 #debug-message .small, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 36, ../../scss/styles/medium.scss */
+/* line 49, ../../scss/styles/medium.scss */
 #debug-message .medium {
   display: block;
 }
