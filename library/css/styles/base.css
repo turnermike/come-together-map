@@ -129,9 +129,10 @@ footer p:last-child {
   display: block;
   margin: 0 auto;
   height: 140px;
+  width: 140px;
   border: 2px solid #55acee;
 }
-/* line 137, ../../scss/styles/base.scss */
+/* line 138, ../../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -139,7 +140,7 @@ footer p:last-child {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 147, ../../scss/styles/base.scss */
+/* line 148, ../../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -152,15 +153,15 @@ footer p:last-child {
   color: #fff;
   background: pink;
 }
-/* line 158, ../../scss/styles/base.scss */
+/* line 159, ../../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 161, ../../scss/styles/base.scss */
+/* line 162, ../../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 164, ../../scss/styles/base.scss */
+/* line 165, ../../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }

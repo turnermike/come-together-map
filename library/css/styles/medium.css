@@ -32,20 +32,21 @@ header.site-header .addthis_sharing_toolbox {
 /* line 34, ../../scss/styles/medium.scss */
 .leaflet-popup-content .image {
   height: auto;
+  width: auto;
 }
 
 /* ==========================================================================
    Debug Styles
    ========================================================================== */
-/* line 44, ../../scss/styles/medium.scss */
+/* line 45, ../../scss/styles/medium.scss */
 #debug-message {
   background: lightblue;
 }
-/* line 46, ../../scss/styles/medium.scss */
+/* line 47, ../../scss/styles/medium.scss */
 #debug-message .small, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 49, ../../scss/styles/medium.scss */
+/* line 50, ../../scss/styles/medium.scss */
 #debug-message .medium {
   display: block;
 }
