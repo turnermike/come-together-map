@@ -9923,19 +9923,24 @@ header.site-header p {
   display: none;
 }
 /* line 44, ../scss/styles/base.scss */
+header.site-header .twitter-status,
+header.site-header .instagram-status {
+  display: block;
+}
+/* line 48, ../scss/styles/base.scss */
 header.site-header .addthis_sharing_toolbox {
   display: none;
 }
-/* line 47, ../scss/styles/base.scss */
+/* line 51, ../scss/styles/base.scss */
 header.site-header .minimize {
   float: right;
   font-size: 0.668em;
 }
-/* line 52, ../scss/styles/base.scss */
+/* line 56, ../scss/styles/base.scss */
 header.site-header.minimized h1 {
   margin-bottom: 0;
 }
-/* line 55, ../scss/styles/base.scss */
+/* line 59, ../scss/styles/base.scss */
 header.site-header.minimized p,
 header.site-header.minimized .addthis_sharing_toolbox {
   display: none;
@@ -9944,17 +9949,17 @@ header.site-header.minimized .addthis_sharing_toolbox {
 /* ==========================================================================
    Footer
    ========================================================================== */
-/* line 66, ../scss/styles/base.scss */
+/* line 70, ../scss/styles/base.scss */
 footer {
   padding: 2% 0;
   text-align: center;
 }
-/* line 70, ../scss/styles/base.scss */
+/* line 74, ../scss/styles/base.scss */
 footer p {
   margin-bottom: 5px;
   font-size: 0.688em;
 }
-/* line 73, ../scss/styles/base.scss */
+/* line 77, ../scss/styles/base.scss */
 footer p:last-child {
   margin-bottom: 0;
 }
@@ -9962,14 +9967,14 @@ footer p:last-child {
 /* ==========================================================================
    Map
    ========================================================================== */
-/* line 84, ../scss/styles/base.scss */
+/* line 88, ../scss/styles/base.scss */
 #map {
   width: 100%;
   height: 80%;
   background: #73B6E6;
 }
 
-/* line 93, ../scss/styles/base.scss */
+/* line 97, ../scss/styles/base.scss */
 .twitterClusterMarker {
   margin: 0;
   padding: 23px 0 0 0;
@@ -9982,7 +9987,7 @@ footer p:last-child {
   color: #fff;
 }
 
-/* line 105, ../scss/styles/base.scss */
+/* line 109, ../scss/styles/base.scss */
 .instagramClusterMarker {
   margin: 0;
   padding: 21px 0 0 0;
@@ -9995,13 +10000,13 @@ footer p:last-child {
   color: #fff;
 }
 
-/* line 126, ../scss/styles/base.scss */
+/* line 130, ../scss/styles/base.scss */
 .leaflet-popup-content .image {
   display: block;
   margin: 0 auto;
   border: 2px solid #55acee;
 }
-/* line 131, ../scss/styles/base.scss */
+/* line 135, ../scss/styles/base.scss */
 .leaflet-popup-content .screen_name {
   text-align: center;
 }
@@ -10009,7 +10014,7 @@ footer p:last-child {
 /* ==========================================================================
  Debug Styles
  ========================================================================== */
-/* line 141, ../scss/styles/base.scss */
+/* line 145, ../scss/styles/base.scss */
 #debug-message {
   position: fixed;
   bottom: 0;
@@ -10022,15 +10027,15 @@ footer p:last-child {
   color: #fff;
   background: pink;
 }
-/* line 152, ../scss/styles/base.scss */
+/* line 156, ../scss/styles/base.scss */
 #debug-message p {
   margin: 0;
 }
-/* line 155, ../scss/styles/base.scss */
+/* line 159, ../scss/styles/base.scss */
 #debug-message .small, #debug-message .medium, #debug-message .large, #debug-message .exlarge {
   display: none;
 }
-/* line 158, ../scss/styles/base.scss */
+/* line 162, ../scss/styles/base.scss */
 #debug-message .small {
   display: block;
 }
