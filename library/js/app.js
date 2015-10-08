@@ -55,7 +55,13 @@ window.ComeTogether = window.ComeTogether || {};
 
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
 
-                var map = L.map('map', { zoomControl: false }).setView([52.514457, -99.546737], 4);
+                if(Foundation.utils.is_medium_up()){
+                    // it's medium up, center map over atlantic
+                    var map = L.map('map', { zoomControl: false }).setView([22.316909, -39.956893], 3);
+                }else{
+                    // it's mobile, center map over canada
+                    var map = L.map('map', { zoomControl: false }).setView([52.514457, -99.546737], 3);
+                }
                 this.settings.map_obj = map;
 
 
