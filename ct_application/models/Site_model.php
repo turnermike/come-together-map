@@ -162,71 +162,78 @@ class Site_model extends CI_Model{
         // var_dump($this->cache->file->get('instagram_json'));
         // echo "</pre>";
 
-        // if($this->cache->file->get('instagram_json')){
+        if($this->cache->file->get('instagram_json')){
 
-        //     $data_obj = $this->cache->file->get('instagram_json');
-        //     return $data_obj;
-
-        // }else{
-        //     // no cache set
-
-        //     $this->set_instagram_cache($forced_update = true);
-
-        // }
-
-
-
-
-
-
-        $query = $this->db->get('instagram');
-
-        if($query->num_rows()){
-            // all good
-
-            $geo_json = array();
-            $total = 0;
-
-            foreach($query->result() as $key => $value){
-
-                // echo "<pre>";
-                // var_dump($value);
-                // echo "</pre>";
-
-                if(strpos($value->caption_text, 'jays') !== FALSE){
-
-                    $marker = array(
-                        'type' => 'Feature',
-                        'geometry' => array(
-                                            'type' => 'Point',
-                                            'coordinates' => array($value->location_longitude, $value->location_latitude)
-                        ),
-                        'properties' => array(
-                            'image' => $value->pic_standard_resolution,
-                            'screen_name' => $value->user_username,
-                            'tweet' => $value->caption_text,
-                            'hashtags' => $value->tags
-                        )
-                    );
-
-                    array_push($geo_json, $marker);
-
-                    $total++;
-
-                }
-
-            }
-
-            return $geo_json;
+            $data_obj = $this->cache->file->get('instagram_json');
+            return $data_obj;
 
         }else{
+            // no cache set
 
-            $result = array('success' => false, 'message' => $this->db->error());
-            return $result;
+            $this->set_instagram_cache($forced_update = true);
 
         }
 
+
+
+
+
+
+    //     $query = $this->db->get('instagram');
+
+    //     if($query->num_rows()){
+    //         // all good
+
+    //         $geo_json = array();
+    //         $total = 0;
+
+    //         foreach($query->result() as $key => $value){
+
+    //             // echo "<pre>";
+    //             // var_dump($value);
+    //             // echo "</pre>";
+
+    //             if(strpos($value->caption_text, 'jays') !== FALSE){
+
+    //                 $marker = array(
+    //                     'type' => 'Feature',
+    //                     'geometry' => array(
+    //                                         'type' => 'Point',
+    //                                         'coordinates' => array($value->location_longitude, $value->location_latitude)
+    //                     ),
+    //                     'properties' => array(
+    //                         'image' => $value->pic_standard_resolution,
+    //                         'screen_name' => $value->user_username,
+    //                         'tweet' => $value->caption_text,
+    //                         'hashtags' => $value->tags
+    //                     )
+    //                 );
+
+    //                 array_push($geo_json, $marker);
+
+    //                 $total++;
+
+    //             }
+
+    //         }
+
+    //         return $geo_json;
+
+    //     }else{
+
+    //         $result = array('success' => false, 'message' => $this->db->error());
+    //         return $result;
+
+    //     }
+
     }
+
+
+
+
+
+
+
 
 
 
@@ -399,6 +406,14 @@ class Site_model extends CI_Model{
     }
 
 
+
+
+
+
+
+
+
+
     function get_instagram(){
 
         $this->config->load('instagram_api', TRUE);
@@ -566,6 +581,8 @@ class Site_model extends CI_Model{
                     header('Refresh:0, url=/site/get_instagram?reload=true');
 
                 }else{
+
+                    $this->set_instagram_cache();
                     echo '<br><br>' . __FILE__ . ' has been executed.';
                 }
 
