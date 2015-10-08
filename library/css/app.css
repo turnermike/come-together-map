@@ -10058,18 +10058,23 @@ footer p:last-child {
     display: block;
   }
 
+  /* line 22, ../scss/styles/medium.scss */
+  #map {
+    height: 100%;
+  }
+
   /* ==========================================================================
      Debug Styles
      ========================================================================== */
-  /* line 27, ../scss/styles/medium.scss */
+  /* line 31, ../scss/styles/medium.scss */
   #debug-message {
     background: lightblue;
   }
-  /* line 29, ../scss/styles/medium.scss */
+  /* line 33, ../scss/styles/medium.scss */
   #debug-message .small, #debug-message .large, #debug-message .exlarge {
     display: none;
   }
-  /* line 32, ../scss/styles/medium.scss */
+  /* line 36, ../scss/styles/medium.scss */
   #debug-message .medium {
     display: block;
   }
