@@ -498,7 +498,8 @@ class Site_model extends CI_Model{
                 foreach($data->data as $key => $value){
                     // loop each instagram
 
-                    if(isset($value->location->latitude) && isset($value->location->longitude)){
+                    if(isset($value->location->latitude) && isset($value->location->longitude) && strpos($value->location->name, 'Roger') === FALSE){
+                        // has a lat/long, not a rogers center location
 
                         // prepare tags for insert
                         $tags_arr = $value->tags;
