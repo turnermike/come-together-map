@@ -163,7 +163,7 @@ window.ComeTogether = window.ComeTogether || {};
                             // layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
 
                             var $popupHTML = '<img src="' + layer.feature.properties.image + '" alt="' + layer.feature.properties.screen_name + '" class="image" />'
-                                        + '<h1 class="screen_name"><a href="http://www.twitter.com/' + layer.feature.properties.screen_name + '" target="_blank">@' + layer.feature.properties.screen_name + '</a></h1>'
+                                        + '<h1 class="screen_name"><a href="https://www.instagram.com/' + layer.feature.properties.screen_name + '" target="_blank">@' + layer.feature.properties.screen_name + '</a></h1>'
                                         + '<p>' + layer.feature.properties.tweet + '</p>';
                             layer.bindPopup($popupHTML);
 
