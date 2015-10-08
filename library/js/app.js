@@ -193,36 +193,36 @@ window.ComeTogether = window.ComeTogether || {};
 
                 if(this.settings.debug){ console.log('initHeader()'); };
 
-                var MAP = map;
+                // var MAP = map;
 
-                $('.minimize a', 'header').on('click', function(e){
+                // $('.minimize a', 'header').on('click', function(e){
 
-                    e.preventDefault();
+                //     e.preventDefault();
 
-                    $('.site-header').addClass('minimized');
+                //     $('.site-header').addClass('minimized');
 
-                    // set the map height
-                    // get the window height
-                    var window_height = $(window).height();
-                    var header_height = $('.site-header').height();
-                    var footer_height = $('.site-footer').height();
+                //     // set the map height
+                //     // get the window height
+                //     var window_height = $(window).height();
+                //     var header_height = $('.site-header').height();
+                //     var footer_height = $('.site-footer').height();
 
-                    var new_map_height = window_height - (header_height + footer_height);
+                //     var new_map_height = window_height - (header_height + footer_height);
 
-                    console.log('wh: ' + window_height);
-                    console.log('hh: ' + header_height);
-                    console.log('fh: ' + footer_height);
-                    console.log('new: ' + new_map_height);
+                //     console.log('wh: ' + window_height);
+                //     console.log('hh: ' + header_height);
+                //     console.log('fh: ' + footer_height);
+                //     console.log('new: ' + new_map_height);
 
-                    $('#map').height(new_map_height);
+                //     $('#map').height(new_map_height);
 
-                    window.setTimeout(function(MAP){
-                        MAP.updateSize();
-                    }, 1000);
+                //     window.setTimeout(function(MAP){
+                //         MAP.updateSize();
+                //     }, 1000);
 
 
 
-                })
+                // })
 
             },
 
