@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </footer>
 
 
-    <input type="hidden" id="txtDebug" name="txtDebug" value="true" />
+    <input type="hidden" id="txtDebug" name="txtDebug" value="false" />
 
     <script src="library/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="library/bower_components/foundation/js/foundation.min.js"></script>
