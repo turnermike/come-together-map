@@ -54,7 +54,7 @@ window.ComeTogether = window.ComeTogether || {};
                 if(this.settings.debug){ console.log('initMap()'); };
 
                 L.mapbox.accessToken = 'pk.eyJ1IjoibGVhdGhlcmZhY2U0MTYiLCJhIjoiTExKRHJhNCJ9.MLHjfgI8qpA-xiFMBS686w';
-                console.log('testing');
+
                 if(Foundation.utils.is_medium_up()){
                     // it's medium up, center map over atlantic
                     var map = L.map('map', { zoomControl: false }).setView([22.316909, -39.956893], 3);
