@@ -74,6 +74,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ga('send', 'pageview');
     </script>
 
-test 123
 </body>
 </html>
