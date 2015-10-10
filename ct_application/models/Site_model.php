@@ -533,7 +533,7 @@ class Site_model extends CI_Model{
                         if($query->num_rows() <= 0){
 
                             // make sure the caption_text has the string 'jays' in it
-                            if(strpos($caption_text, 'cometogether') !== FALSE){
+                            // if(strpos($caption_text, 'cometogether') !== FALSE){
 
                                 $insert_data = array(
                                     'user_username'             => $value->user->username,
@@ -561,7 +561,7 @@ class Site_model extends CI_Model{
                                     echo ' | Error: ' . $this->db->error() . '<br>';
                                 }
 
-                            }
+                            // }
 
                         }
 
