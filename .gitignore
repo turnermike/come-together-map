@@ -15,12 +15,12 @@ error_log
 wp-content/debug.log
 
 # CodeIgniter
-application/cache/*
-!application/cache/index.html
-!application/cache/.htaccess
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+ct_application/cache/*
+!ct_application/cache/index.html
+!ct_application/cache/.htaccess
+ct_application/logs/*
+!ct_application/logs/index.html
+!ct_application/logs/.htaccess
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
