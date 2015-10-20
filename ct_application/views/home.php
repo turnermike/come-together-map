@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="Cometogether Map is a collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices." />
-    <meta name="keywoards" content="cometogether map, cometogether, bluejays map, #cometogether map, #cometogether" />
+    <meta name="keywoards" content="cometogether map, cometogether, come together map, #cometogether map, #cometogether, blujays map, jays map" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no" />
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
