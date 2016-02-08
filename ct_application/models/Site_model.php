@@ -53,15 +53,6 @@ class Site_model extends CI_Model{
     }
 
 
-
-
-
-
-
-
-
-
-
     function set_instagram_cache($forced_update = false){
 
 
@@ -129,30 +120,7 @@ class Site_model extends CI_Model{
 
         }
 
-
-
     }
-
-    // function get_instagram_cache(){
-
-    //     $this->load->driver('cache');
-
-    //     $val = $this->cache->file->get('instagram_json');
-
-    //     echo "<pre>";
-    //     var_dump($val);
-    //     echo "</pre>";
-
-    // }
-
-
-
-
-
-
-
-
-
 
 
     function populate_map_instagrams(){
@@ -174,14 +142,6 @@ class Site_model extends CI_Model{
         }
 
     }
-
-
-
-
-
-
-
-
 
 
     function get_tweets($latitude, $longitude, $distance){
@@ -351,14 +311,6 @@ class Site_model extends CI_Model{
         return $result_obj;
 
     }
-
-
-
-
-
-
-
-
 
 
     function get_instagram(){
