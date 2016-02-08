@@ -157,7 +157,6 @@ class Site_model extends CI_Model{
 
     function populate_map_instagrams(){
 
-
         // echo "<pre>";
         // var_dump($this->cache->file->get('instagram_json'));
         // echo "</pre>";
@@ -173,58 +172,6 @@ class Site_model extends CI_Model{
             $this->set_instagram_cache($forced_update = true);
 
         }
-
-
-
-
-
-
-    //     $query = $this->db->get('instagram');
-
-    //     if($query->num_rows()){
-    //         // all good
-
-    //         $geo_json = array();
-    //         $total = 0;
-
-    //         foreach($query->result() as $key => $value){
-
-    //             // echo "<pre>";
-    //             // var_dump($value);
-    //             // echo "</pre>";
-
-    //             if(strpos($value->caption_text, 'jays') !== FALSE){
-
-    //                 $marker = array(
-    //                     'type' => 'Feature',
-    //                     'geometry' => array(
-    //                                         'type' => 'Point',
-    //                                         'coordinates' => array($value->location_longitude, $value->location_latitude)
-    //                     ),
-    //                     'properties' => array(
-    //                         'image' => $value->pic_standard_resolution,
-    //                         'screen_name' => $value->user_username,
-    //                         'tweet' => $value->caption_text,
-    //                         'hashtags' => $value->tags
-    //                     )
-    //                 );
-
-    //                 array_push($geo_json, $marker);
-
-    //                 $total++;
-
-    //             }
-
-    //         }
-
-    //         return $geo_json;
-
-    //     }else{
-
-    //         $result = array('success' => false, 'message' => $this->db->error());
-    //         return $result;
-
-    //     }
 
     }
 
