@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <footer class="site-footer row">
         <div class="small-12 medium-8 medium-offset-2 columns">
-            <p><a href="mailto:catchdataste@cometogethermap.com">xcatchdataste@cometogethermap.com</a> | #cometogethermap</p>
+            <p><a href="mailto:catchdataste@cometogethermap.com">catchdataste@cometogethermap.com</a> | #cometogethermap</p>
         </div>
     </footer>
 
