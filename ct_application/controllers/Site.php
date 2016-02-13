@@ -114,5 +114,9 @@ class Site extends CI_Controller {
 
     }
 
+    public function phpinfo(){
+        phpinfo();
+    }
+
 
 }
