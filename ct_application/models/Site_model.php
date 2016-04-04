@@ -95,11 +95,6 @@ class Site_model extends CI_Model{
             }
 
             // save to cache
-
-            // $some_object = (object) NULL;
-            // $some_object->test_property = 'testing 1234';
-            // $this->cache->file->save('cache_key', $some_object, 120);
-
             $this->cache->file->save('instagram_json', $geo_json, 14400); // 4 hours
 
             if($forced_update){
@@ -107,11 +102,6 @@ class Site_model extends CI_Model{
             }else{
                 echo '\nRecords Added: ' . $total;
             }
-
-
-            // echo '\nCache Result: ' . $result;
-
-            // return $geo_json;
 
         }else{
 
@@ -474,6 +464,7 @@ class Site_model extends CI_Model{
 
                 // echo '<br><br>Results Found: ' . $totalFound;
                 // echo '<br>Total Inserted: ' . $totalInserted;
+                // echo '<br>Next URL: ' . $data->pagination->next_url;
 
                 if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
 
