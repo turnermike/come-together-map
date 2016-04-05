@@ -69,27 +69,24 @@ class Site_model extends CI_Model{
                 // var_dump($value);
                 // echo "</pre>";
 
-                if(strpos($value->caption_text, 'jays') !== FALSE){
+                $marker = array(
+                    'type' => 'Feature',
+                    'geometry' => array(
+                                        'type' => 'Point',
+                                        'coordinates' => array($value->location_longitude, $value->location_latitude)
+                    ),
+                    'properties' => array(
+                        'image' => $value->pic_standard_resolution,
+                        'screen_name' => $value->user_username,
+                        'tweet' => $value->caption_text,
+                        'hashtags' => $value->tags
+                    )
+                );
 
-                    $marker = array(
-                        'type' => 'Feature',
-                        'geometry' => array(
-                                            'type' => 'Point',
-                                            'coordinates' => array($value->location_longitude, $value->location_latitude)
-                        ),
-                        'properties' => array(
-                            'image' => $value->pic_standard_resolution,
-                            'screen_name' => $value->user_username,
-                            'tweet' => $value->caption_text,
-                            'hashtags' => $value->tags
-                        )
-                    );
+                array_push($geo_json, $marker);
 
-                    array_push($geo_json, $marker);
+                $total++;
 
-                    $total++;
-
-                }
 
             }
 
@@ -387,17 +384,25 @@ class Site_model extends CI_Model{
                     // loop each instagram
 
                     // echo "<pre>";
-                    // var_dump($data->data);
+                    // var_dump(strpos($value->caption->text, 'jays'));
                     // echo "</pre>";
+                    // die();
 
                     // if(isset($value->location->latitude) && isset($value->location->longitude) && strpos($value->location->name, 'Roger') === FALSE){
                         // has a lat/long, not a rogers center location
-                    if(isset($value->location->latitude) && isset($value->location->longitude) &&
-                        !in_array('eurovision', $value->tags)){
+
+                    if(isset($value->location->latitude) && isset($value->location->longitude)
+                        && (strpos($value->caption->text, 'jays') !== FALSE
+                        || strpos($value->caption->text, 'bluejays') !== FALSE
+                        || strpos($value->caption->text, 'toronto') !== FALSE
+                        || strpos($value->caption->text, 'mlb') !== FALSE)){
+
 
                         // prepare tags for insert
                         $tags_arr = $value->tags;
                         $tags_str = implode(',', $tags_arr);
+
+
 
                         // prepare caption text
                         if(isset($value->caption->text) && $value->caption->text != ''){
