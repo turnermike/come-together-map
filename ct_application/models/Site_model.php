@@ -395,7 +395,10 @@ class Site_model extends CI_Model{
                         && (strpos($value->caption->text, 'jays') !== FALSE
                         || strpos($value->caption->text, 'bluejays') !== FALSE
                         || strpos($value->caption->text, 'toronto') !== FALSE
-                        || strpos($value->caption->text, 'mlb') !== FALSE)){
+                        || strpos($value->caption->text, 'mlb') !== FALSE
+                        || strpos($value->caption->text, 'baseball') !== FALSE
+                        || strpos($value->caption->text, 'rogers') !== FALSE
+                        || strpos($value->caption->text, 'skydome') !== FALSE)){
 
 
                         // prepare tags for insert
