@@ -304,7 +304,8 @@ class Site_model extends CI_Model{
         $this->config->load('instagram_api', TRUE);
         $client_id = $this->config->item('instagram_client_id', 'instagram_api');
 
-        $hashtag = 'cometogether';
+        // $hashtag = 'cometogether';
+        $hashtag = 'ourmoment';
         $query = array(
             'client_id' => $client_id,
             'count' => '33'
