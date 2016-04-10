@@ -38,16 +38,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <header class="site-header row">
         <div class="small-12 medium-8 medium-offset-2 columns">
-            <h1>#ComeTogether Map</h1>
-            <p>A collection of Instagram and Twitter content tagged with #cometogether. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
-            <p><strong>UPDATE:</strong> Your Instagram captions or text must include the words 'jays', 'bluejays', 'toronto', or 'mlb' to be added to the map. Go Jays!</p>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <h1>#ComeTogether/#OurMoment Map</h1>
+            <p>A collection of Instagram and Twitter content tagged with #cometogether and #ourmoment. Only user's with location services activated will appear here, so please enable location services for Instagram and Twitter on your mobile devices.</p>
+            <!-- <p><strong>UPDATE:</strong> Your Instagram captions or text must include the words 'jays', 'bluejays', 'toronto', or 'mlb' to be added to the map. Go Jays!</p> -->
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50085eb25dded89d" async="async"></script>
             <div class="addthis_sharing_toolbox"></div>
             <p class="twitter-status"></p>
             <p class="instagram-status"></p>
-            <!-- <p class="minimize"><a href="#">minimize this header</a></p> -->
-
         </div>
     </header>
 
