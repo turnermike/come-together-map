@@ -1,7 +1,4 @@
 
-# ignore index.php for cron
-/index.php
-
 # ignore all instances of the following
 *.DS_Store
 error_log
@@ -11,20 +8,14 @@ error_log
 **/.sass-cache
 **/.sass-cache/*
 
-# Wordpress
-wp-content/debug.log
 
 # CodeIgniter
-ct_application/cache/*
-!ct_application/cache/index.html
-!ct_application/cache/.htaccess
-ct_application/logs/*
-!ct_application/logs/index.html
-!ct_application/logs/.htaccess
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
+deploy/ct_application/cache/*
+!deploy/ct_application/cache/index.html
+!deploy/ct_application/cache/.htaccess
+deploy/ct_application/logs/*
+!deploy/ct_application/logs/index.html
+!deploy/ct_application/logs/.htaccess
 /vendor/
 
 ## Sublime Text cache files
