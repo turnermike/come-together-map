@@ -509,12 +509,12 @@ $config['proxy_ips'] = '';
 |--------------------------------------------------------------------------
 |
 */
-$config['facebook']['app_id'] = '888623961227950';
-$config['facebook']['app_secret'] = 'b9b3d4dc8d0231465de79a8eb9e07674';
-$config['facebook']['redirect_uri'] = $_SERVER['HTTP_HOST'] . '/login';
-$config['facebook']['permissions'] = array(
-    'emai', 'user_location', 'user_birthday'
-);
+// $config['facebook']['app_id'] = '888623961227950';
+// $config['facebook']['app_secret'] = 'b9b3d4dc8d0231465de79a8eb9e07674';
+// $config['facebook']['redirect_uri'] = $_SERVER['HTTP_HOST'] . '/login';
+// $config['facebook']['permissions'] = array(
+//     'emai', 'user_location', 'user_birthday'
+// );
 
 
 
