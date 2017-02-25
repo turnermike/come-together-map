@@ -1,0 +1,30 @@
+version: '2'
+services:
+  cometogethermap-web:
+    depends_on:
+      - cometogethermap-db
+    build: .
+    container_name: cometogethermap-web
+    # image: "744241446859.dkr.ecr.us-east-1.amazonaws.com/cometogethermap-web:latest"
+    ports:
+      - "80:80"
+    links:
+      - cometogethermap-db
+    volumes:
+      - ./deploy:/public_html
+    restart: always
+
+  cometogethermap-db:
+    container_name: cometogethermap-db
+    image: mariadb:10.0.29
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mnReYe235S@S
+      MYSQL_HOST: db
+      MYSQL_DATABASE: cometogethermap_website
+      MYSQL_USER: cometogethermap
+      MYSQL_PASSWORD: K#*&djn234Sx
