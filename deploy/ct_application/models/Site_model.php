@@ -51,7 +51,6 @@ class Site_model extends CI_Model{
 
     }
 
-
     function set_instagram_cache($forced_update = false){
 
 
@@ -107,7 +106,6 @@ class Site_model extends CI_Model{
         }
 
     }
-
 
     function populate_map_instagrams(){
 
@@ -301,210 +299,237 @@ class Site_model extends CI_Model{
 
     function get_instagram(){
 
+        // get client id from config file
         $this->config->load('instagram_api', TRUE);
         $client_id = $this->config->item('instagram_client_id', 'instagram_api');
+        $client_secret = $this->config->item('instagram_client_secret', 'instagram_api');
+        $callback_url = $this->config->item('instagram_callback_url', 'instagram_api');
 
-        $hashtag = 'ourmoment';
-        $query = array(
-            'client_id' => $client_id,
-            'count' => '33'
+        $config = array(
+            'apiKey'      => $client_id,
+            'apiSecret'   => $client_secret,
+            'apiCallback' => $callback_url
         );
 
-        echo '<pre>';
-        var_dump($query);
-        echo '</pre>';
-
-        // instagram will return a max of 33 results
-        // if there are more than 33 results available, we will reload this page
-        // and pass the next_url value provided by the api to get the next page
-        if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
-            // it's a reload, get the next url from the database
-
-            $query = $this->db->get_where('config', array('var' => 'instagram_next_url'));
-            $row = $query->row();
-            $url = $row->val;
-
-            // echo "<pre>";
-            // var_dump($row->val);
-            // echo "</pre>";
-
-        }else{
-            // first run
-            // $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
-            $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '?access_token=35e17432afee46cfa18c02a31d4405a1';
-
-            // 35e17432afee46cfa18c02a31d4405a1
-        }
-
-        try{
-
-            $curl_connection = curl_init($url);
-            curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-            curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
-
-            //Data are stored in $data
-            // $data = json_decode(curl_exec($curl_connection), true);
-            $data = json_decode(curl_exec($curl_connection));
-            curl_close($curl_connection);
-
-            // // dump all of it
-            echo "<pre>";
-            var_dump($data);
-            echo "</pre>";
-
-            // // dump a single instagram
-            // echo "<pre>";
-            // var_dump($data->data[0]);
-            // echo "</pre>";
-
-            $totalFound = 0;
-            $totalInserted = 0;
-
-            if(sizeof($data->data) > 0){
-                // we have records
-
-                // save next results url to database so we can pull it on reload
-                if(isset($data->pagination->next_url)){
-
-                    $next_url = array('val' => $data->pagination->next_url);
-                    $this->db->set($next_url);
-                    $this->db->where('var', 'instagram_next_url');
-
-                    if($this->db->update('config') === TRUE){
-                        // echo '<br>next_url Save to Database Successfully: ' . $this->db->affected_rows() . '<br>';
-                    }else{
-                        echo '<br>Error: ' . $this->db->error() . '<br>';
-                    }
-
-                }else{
-
-                    // reset the config value to null
-                    $data = array('val' => NULL);
-                    $this->db->set($data);
-                    $this->db->where('var', 'instagram_next_url');
-                    $this->db->update('config');
-
-                }
-
-                foreach($data->data as $key => $value){
-                    // loop each instagram
-
-                    // echo "<pre>";
-                    // var_dump(strpos($value->caption->text, 'jays'));
-                    // echo "</pre>";
-                    // die();
-
-                    // if(isset($value->location->latitude) && isset($value->location->longitude) && strpos($value->location->name, 'Roger') === FALSE){
-                        // has a lat/long, not a rogers center location
-
-                    if(isset($value->location->latitude) && isset($value->location->longitude)
-                        && (strpos($value->caption->text, 'jays') !== FALSE
-                        || strpos($value->caption->text, 'bluejays') !== FALSE
-                        || strpos($value->caption->text, 'toronto') !== FALSE
-                        || strpos($value->caption->text, 'mlb') !== FALSE
-                        || strpos($value->caption->text, 'baseball') !== FALSE
-                        || strpos($value->caption->text, 'rogers') !== FALSE
-                        || strpos($value->caption->text, 'skydome') !== FALSE)){
-
-
-                        // prepare tags for insert
-                        $tags_arr = $value->tags;
-                        $tags_str = implode(',', $tags_arr);
 
 
 
-                        // prepare caption text
-                        if(isset($value->caption->text) && $value->caption->text != ''){
-                            $caption_text = $value->caption->text;
-                        }else{
-                            $caption_text = '';
-                        }
+        // $hashtag = 'ourmoment';
+        // $query = array(
+        //     'client_id' => $client_id,
+        //     'count' => '33'
+        // );
 
-                        // echo "<br><br>Username: " . $value->user->username;
-                        // echo "<br>Full name: " . $value->user->full_name;
-                        // echo "<br>Profile picture: " . $value->user->profile_picture;
-                        // echo "<br>User ID: " . $value->user->id;
-                        // echo "<br>Latitude: " . $value->location->latitude;
-                        // echo "<br>Longitude: " . $value->location->longitude;
-                        // echo "<br>Location: " . $value->location->name;
-                        // echo "<br>Tags: " . $tags_str;
-                        // echo "<br>Caption: " . $value->caption->text;
-                        // echo "<br>Created time: " . date('Y-m-d H:i:s', $value->created_time);
-                        // echo "<br>Link: " . $value->link;
-                        // echo "<br>Instagram ID: " . $value->id;
-                        // echo "<br>Date added: " . date('Y-m-d H:i:s');
-                        // echo '<br>---------------------------------------------';
+        // echo '<pre>';
+        // var_dump($query);
+        // echo '</pre>';
 
-                        // make sure the tweet hasn't already been added to db
-                        $query = $this->db->get_where('instagram', array('instagram_id' => $value->id));
+        // // instagram will return a max of 33 results
+        // // if there are more than 33 results available, we will reload this page
+        // // and pass the next_url value provided by the api to get the next page
+        // if(isset($_GET['reload']) && $_GET['reload'] === 'true'){
+        //     // it's a reload, get the next url from the database
 
-                        if($query->num_rows() <= 0){
+        //     $query = $this->db->get_where('config', array('var' => 'instagram_next_url'));
+        //     $row = $query->row();
+        //     $url = $row->val;
 
-                            // make sure the caption_text has the string 'jays' in it
-                            // if(strpos($caption_text, 'cometogether') !== FALSE){
+        //     // echo "<pre>";
+        //     // var_dump($row->val);
+        //     // echo "</pre>";
 
-                                $insert_data = array(
-                                    'user_username'             => $value->user->username,
-                                    'user_full_name'            => $value->user->full_name,
-                                    'user_profile_picture'      => $value->user->profile_picture,
-                                    'user_id'                   => $value->user->id,
-                                    'location_latitude'         => $value->location->latitude,
-                                    'location_longitude'        => $value->location->longitude,
-                                    'location_name'             => $value->location->name,
-                                    'pic_low_resolution'        => $value->images->low_resolution->url,
-                                    'pic_thumbnail'             => $value->images->thumbnail->url,
-                                    'pic_standard_resolution'   => $value->images->standard_resolution->url,
-                                    'tags'                      => $tags_str,
-                                    'caption_text'              => $caption_text,
-                                    'created_time'              => date('Y-m-d H:i:s', $value->created_time),
-                                    'link'                      => $value->link,
-                                    'instagram_id'              => $value->id,
-                                    'date_added'                => date('Y-m-d H:i:s')
-                                );
+        // }else{
+        //     // first run
+        //     $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
 
-                                if($this->db->insert('instagram', $insert_data)){
-                                    // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
-                                    $totalInserted++;
-                                }else{
-                                    echo ' | Error: ' . $this->db->error() . '<br>';
-                                }
-
-                            // }
-
-                        }
+        // }
 
 
 
-                    }
-
-                    $totalFound++;
-
-                }
-
-                // echo '<br><br>Results Found: ' . $totalFound;
-                // echo '<br>Total Inserted: ' . $totalInserted;
-                // echo '<br>Next URL: ' . $data->pagination->next_url;
-
-                if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
-
-                    // echo '<br><br>we have a next url';
-                    header('Refresh:0, url=/site/get_instagram?reload=true');
-
-                }else{
-
-                    $this->set_instagram_cache();
-                    echo '<br><br>' . __FILE__ . ' has been executed.';
-                }
-
-            }
 
 
-        } catch(Exception $e){
 
-            return $e->getMessage();
 
-        }
+
+
+
+
+        // try{
+
+        //     $curl_connection = curl_init($url);
+        //     curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
+        //     curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+        //     curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
+
+        //     //Data are stored in $data
+        //     // $data = json_decode(curl_exec($curl_connection), true);
+        //     $data = json_decode(curl_exec($curl_connection));
+        //     curl_close($curl_connection);
+
+        //     // // dump all of it
+        //     echo "<pre>";
+        //     var_dump($data);
+        //     echo "</pre>";
+
+        //     // // dump a single instagram
+        //     // echo "<pre>";
+        //     // var_dump($data->data[0]);
+        //     // echo "</pre>";
+
+        //     $totalFound = 0;
+        //     $totalInserted = 0;
+
+        //     if(sizeof($data->data) > 0){
+        //         // we have records
+
+        //         // save next results url to database so we can pull it on reload
+        //         if(isset($data->pagination->next_url)){
+
+        //             $next_url = array('val' => $data->pagination->next_url);
+        //             $this->db->set($next_url);
+        //             $this->db->where('var', 'instagram_next_url');
+
+        //             if($this->db->update('config') === TRUE){
+        //                 // echo '<br>next_url Save to Database Successfully: ' . $this->db->affected_rows() . '<br>';
+        //             }else{
+        //                 echo '<br>Error: ' . $this->db->error() . '<br>';
+        //             }
+
+        //         }else{
+
+        //             // reset the config value to null
+        //             $data = array('val' => NULL);
+        //             $this->db->set($data);
+        //             $this->db->where('var', 'instagram_next_url');
+        //             $this->db->update('config');
+
+        //         }
+
+        //         foreach($data->data as $key => $value){
+        //             // loop each instagram
+
+        //             // echo "<pre>";
+        //             // var_dump(strpos($value->caption->text, 'jays'));
+        //             // echo "</pre>";
+        //             // die();
+
+        //             // if(isset($value->location->latitude) && isset($value->location->longitude) && strpos($value->location->name, 'Roger') === FALSE){
+        //                 // has a lat/long, not a rogers center location
+
+        //             if(isset($value->location->latitude) && isset($value->location->longitude)
+        //                 && (strpos($value->caption->text, 'jays') !== FALSE
+        //                 || strpos($value->caption->text, 'bluejays') !== FALSE
+        //                 || strpos($value->caption->text, 'toronto') !== FALSE
+        //                 || strpos($value->caption->text, 'mlb') !== FALSE
+        //                 || strpos($value->caption->text, 'baseball') !== FALSE
+        //                 || strpos($value->caption->text, 'rogers') !== FALSE
+        //                 || strpos($value->caption->text, 'skydome') !== FALSE)){
+
+
+        //                 // prepare tags for insert
+        //                 $tags_arr = $value->tags;
+        //                 $tags_str = implode(',', $tags_arr);
+
+
+
+        //                 // prepare caption text
+        //                 if(isset($value->caption->text) && $value->caption->text != ''){
+        //                     $caption_text = $value->caption->text;
+        //                 }else{
+        //                     $caption_text = '';
+        //                 }
+
+        //                 // echo "<br><br>Username: " . $value->user->username;
+        //                 // echo "<br>Full name: " . $value->user->full_name;
+        //                 // echo "<br>Profile picture: " . $value->user->profile_picture;
+        //                 // echo "<br>User ID: " . $value->user->id;
+        //                 // echo "<br>Latitude: " . $value->location->latitude;
+        //                 // echo "<br>Longitude: " . $value->location->longitude;
+        //                 // echo "<br>Location: " . $value->location->name;
+        //                 // echo "<br>Tags: " . $tags_str;
+        //                 // echo "<br>Caption: " . $value->caption->text;
+        //                 // echo "<br>Created time: " . date('Y-m-d H:i:s', $value->created_time);
+        //                 // echo "<br>Link: " . $value->link;
+        //                 // echo "<br>Instagram ID: " . $value->id;
+        //                 // echo "<br>Date added: " . date('Y-m-d H:i:s');
+        //                 // echo '<br>---------------------------------------------';
+
+        //                 // make sure the tweet hasn't already been added to db
+        //                 $query = $this->db->get_where('instagram', array('instagram_id' => $value->id));
+
+        //                 if($query->num_rows() <= 0){
+
+        //                     // make sure the caption_text has the string 'jays' in it
+        //                     // if(strpos($caption_text, 'cometogether') !== FALSE){
+
+        //                         $insert_data = array(
+        //                             'user_username'             => $value->user->username,
+        //                             'user_full_name'            => $value->user->full_name,
+        //                             'user_profile_picture'      => $value->user->profile_picture,
+        //                             'user_id'                   => $value->user->id,
+        //                             'location_latitude'         => $value->location->latitude,
+        //                             'location_longitude'        => $value->location->longitude,
+        //                             'location_name'             => $value->location->name,
+        //                             'pic_low_resolution'        => $value->images->low_resolution->url,
+        //                             'pic_thumbnail'             => $value->images->thumbnail->url,
+        //                             'pic_standard_resolution'   => $value->images->standard_resolution->url,
+        //                             'tags'                      => $tags_str,
+        //                             'caption_text'              => $caption_text,
+        //                             'created_time'              => date('Y-m-d H:i:s', $value->created_time),
+        //                             'link'                      => $value->link,
+        //                             'instagram_id'              => $value->id,
+        //                             'date_added'                => date('Y-m-d H:i:s')
+        //                         );
+
+        //                         if($this->db->insert('instagram', $insert_data)){
+        //                             // echo ' | Success: ' . $this->db->affected_rows() . '<br>';
+        //                             $totalInserted++;
+        //                         }else{
+        //                             echo ' | Error: ' . $this->db->error() . '<br>';
+        //                         }
+
+        //                     // }
+
+        //                 }
+
+
+
+        //             }
+
+        //             $totalFound++;
+
+        //         }
+
+        //         // echo '<br><br>Results Found: ' . $totalFound;
+        //         // echo '<br>Total Inserted: ' . $totalInserted;
+        //         // echo '<br>Next URL: ' . $data->pagination->next_url;
+
+        //         if(isset($data->pagination->next_url) && $data->pagination->next_url != ''){
+
+        //             // echo '<br><br>we have a next url';
+        //             header('Refresh:0, url=/site/get_instagram?reload=true');
+
+        //         }else{
+
+        //             $this->set_instagram_cache();
+        //             echo '<br><br>' . __FILE__ . ' has been executed.';
+        //         }
+
+        //     }
+
+
+        // } catch(Exception $e){
+
+        //     return $e->getMessage();
+
+        // }
+
+
+
+
+
+
+
 
     }
 

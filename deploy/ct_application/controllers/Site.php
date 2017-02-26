@@ -7,11 +7,9 @@ class Site extends CI_Controller {
 
         parent::__construct();
 
-
     }
 
     public function index(){
-
 
         $this->load->view('home');
 
@@ -117,7 +115,7 @@ class Site extends CI_Controller {
     public function phpinfo(){
 
         phpinfo();
-        
+
     }
 
 
