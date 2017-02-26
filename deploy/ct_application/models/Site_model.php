@@ -344,9 +344,9 @@ class Site_model extends CI_Model{
             curl_close($curl_connection);
 
             // // dump all of it
-            // echo "<pre>";
-            // var_dump($data);
-            // echo "</pre>";
+            echo "<pre>";
+            var_dump($data);
+            echo "</pre>";
 
             // // dump a single instagram
             // echo "<pre>";
