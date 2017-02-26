@@ -1,4 +1,6 @@
 
+.data
+
 # ignore all instances of the following
 *.DS_Store
 error_log
