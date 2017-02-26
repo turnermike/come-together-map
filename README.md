@@ -1,6 +1,33 @@
 
 # Getting Started
 
+## Docker
+
+### Start Project
+
+```
+docker-compose build
+docker-compose up -d
+```
+
+### Update Repository (EC2 Container Service)
+
+Update "latest" tag:
+
+```
+docker tag cometogethermap-web 744241446859.dkr.ecr.us-east-1.amazonaws.com/come-together-map:latest
+docker push 744241446859.dkr.ecr.us-east-1.amazonaws.com/come-together-map:latest
+```
+
+Create new version tag:
+
+```
+docker tag cometogethermap-web 744241446859.dkr.ecr.us-east-1.amazonaws.com/come-together-map:1.0.0
+docker push 744241446859.dkr.ecr.us-east-1.amazonaws.com/come-together-map:1.0.0
+```
+
+
+
 ## Set your environment URLs
 1. Open index.php and locate the Environment section.
 2. Update the proper urls for each environment.

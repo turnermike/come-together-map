@@ -5,7 +5,7 @@ services:
       - cometogethermap-db
     build: .
     container_name: cometogethermap-web
-    # image: "744241446859.dkr.ecr.us-east-1.amazonaws.com/cometogethermap-web:latest"
+    image: "744241446859.dkr.ecr.us-east-1.amazonaws.com/come-together-map"
     ports:
       - "80:80"
     links:
@@ -25,6 +25,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mnReYe235S@S
       MYSQL_HOST: db
-      MYSQL_DATABASE: cometogethermap_website
+      MYSQL_DATABASE: cometogethermapdb
       MYSQL_USER: cometogethermap
       MYSQL_PASSWORD: K#*&djn234Sx

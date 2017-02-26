@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'hihat_cometogether',
+	'hostname' => 'cometogethermap-db',
+	'username' => 'cometogethermap',
+	'password' => 'K#*&djn234Sx',
+	'database' => 'cometogethermapdb',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
