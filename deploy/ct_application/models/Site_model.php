@@ -142,7 +142,7 @@ class Site_model extends CI_Model{
         $this->load->library('TwitterAPIExchange', $settings);
 
         // hashtags to search
-        $hashtags = '#cometogether OR #gojaysgo OR #gojays OR #bluejays OR #jayswin OR #stiritup OR #blueoctober OR #timandsid OR #sn OR #aleastchamps';
+        $hashtags = '#ourmoment OR #cometogether OR #gojaysgo OR #gojays OR #bluejays OR #jayswin OR #stiritup OR #blueoctober OR #timandsid OR #sn OR #aleastchamps';
         // $hashtags = '#cometogether OR #bluejays';
 
         // api info
@@ -220,66 +220,68 @@ class Site_model extends CI_Model{
         // loop each tweet
         foreach($result_obj->statuses as $key => $value){
 
-            // gather hashtags and store as a string
-            $hashtags_arr = array();
-            $hashtags_str = '';
-            foreach($value->entities->hashtags as $hashtag){
-                array_push($hashtags_arr, '#' . $hashtag->text);
+            // if geo coordinates are available
+            if(isset($value->geo)){
 
-            }
-            $hashtags_str = implode(', ', $hashtags_arr);
+                // gather hashtags and store as a string
+                $hashtags_arr = array();
+                $hashtags_str = '';
+                foreach($value->entities->hashtags as $hashtag){
+                    array_push($hashtags_arr, '#' . $hashtag->text);
 
-            // // output data
-            // echo '<br>user_profile_image_url: ' . $value->user->profile_image_url;
-            // echo '<br>user_screen_name: ' . $value->user->screen_name;
-            // echo '<br>user_full_name: ' . $value->user->name;
-            // echo '<br>user_id: ' . $value->user->id;
-            // echo '<br>user_location: ' . $value->user->location;
-            // echo '<br>geo_latitude: ' . $value->geo->coordinates[0];
-            // echo '<br>geo_longitude: ' . $value->geo->coordinates[1];
-            // echo '<br>place_name: ' . $value->place->name;
-            // echo '<br>place_full_name: ' . $value->place->full_name;
-            // echo '<br>place_country: ' . $value->place->country;
-            // echo '<br>tweet_id: ' . $value->id;
-            // echo '<br>tweet_text: ' . $value->text;
-            // echo '<br>hashtags: ' . $hashtags_str;
-            // echo '<br>tweet_date: ' . $value->created_at;
-            // echo '<br>date_added: ' . date('Y-m-d H:i:s');
-            // echo '<br>---------------------------------------- ';
-
-            // make sure the tweet hasn't already been added to db
-            // $sql = "SELECT * FROM tweets WHERE tweet_id = '" . $value->id . "'";
-            // $result = $conn->query($sql);
-            $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
-
-            if($query->num_rows() <= 0){
-                // no existing records
-
-                $data = array(
-                    'user_screen_name'          => $this->db->escape_str($value->user->screen_name),
-                    'user_full_name'            => $this->db->escape_str($value->user->name),
-                    'user_profile_image_url'    => $this->db->escape_str($value->user->profile_image_url),
-                    'user_id'                   => $this->db->escape_str($value->user->id),
-                    'user_location'             => $this->db->escape_str($value->user->location),
-                    'geo_latitude'              => $this->db->escape_str($value->geo->coordinates[0]),
-                    'geo_longitude'             => $this->db->escape_str($value->geo->coordinates[1]),
-                    'place_name'                => $this->db->escape_str($value->place->name),
-                    'place_full_name'           => $this->db->escape_str($value->place->full_name),
-                    'place_country'             => $this->db->escape_str($value->place->country),
-                    'tweet_id'                  => $value->id_str,
-                    'tweet_text'                => $this->db->escape_str($value->text),
-                    'tweet_hashtags'            => $hashtags_str,
-                    'tweet_date'                => $this->db->escape_str($value->created_at),
-                    'date_added'                => date('Y-m-d H:i:s')
-                );
-
-                if($this->db->insert('tweets', $data)){
-                    // echo " | Success: " . $this->db->affected_rows() . '<br>';
-                    $total++;
-                }else{
-                    echo " | Error: " . $this->db->error() . '<br>';
                 }
-            }
+                $hashtags_str = implode(', ', $hashtags_arr);
+
+                // // output data
+                // echo '<br>user_profile_image_url: ' . $value->user->profile_image_url;
+                // echo '<br>user_screen_name: ' . $value->user->screen_name;
+                // echo '<br>user_full_name: ' . $value->user->name;
+                // echo '<br>user_id: ' . $value->user->id;
+                // echo '<br>geo_latitude: ' . $value->geo->coordinates[0];
+                // echo '<br>geo_longitude: ' . $value->geo->coordinates[1];
+                // echo '<br>place_name: ' . $value->place->name;
+                // echo '<br>place_full_name: ' . $value->place->full_name;
+                // echo '<br>place_country: ' . $value->place->country;
+                // echo '<br>tweet_id: ' . $value->id;
+                // echo '<br>tweet_text: ' . $value->text;
+                // echo '<br>hashtags: ' . $hashtags_str;
+                // echo '<br>tweet_date: ' . $value->created_at;
+                // echo '<br>date_added: ' . date('Y-m-d H:i:s');
+                // echo '<br>---------------------------------------- ';
+
+                // make sure the tweet hasn't already been added to db
+                $query = $this->db->get_where('tweets', array('tweet_id' => $value->id));
+
+                if($query->num_rows() <= 0){
+                    // no existing records
+
+                    $data = array(
+                        'user_screen_name'          => $this->db->escape_str($value->user->screen_name),
+                        'user_full_name'            => $this->db->escape_str($value->user->name),
+                        'user_profile_image_url'    => $this->db->escape_str($value->user->profile_image_url),
+                        'user_id'                   => $this->db->escape_str($value->user->id),
+                        // 'user_location'             => $this->db->escape_str($value->user->location),
+                        'geo_latitude'              => $this->db->escape_str($value->geo->coordinates[0]),
+                        'geo_longitude'             => $this->db->escape_str($value->geo->coordinates[1]),
+                        'place_name'                => $this->db->escape_str($value->place->name),
+                        'place_full_name'           => $this->db->escape_str($value->place->full_name),
+                        'place_country'             => $this->db->escape_str($value->place->country),
+                        'tweet_id'                  => $value->id_str,
+                        'tweet_text'                => $this->db->escape_str($value->text),
+                        'tweet_hashtags'            => $hashtags_str,
+                        'tweet_date'                => $this->db->escape_str($value->created_at),
+                        'date_added'                => date('Y-m-d H:i:s')
+                    );
+
+                    if($this->db->insert('tweets', $data)){
+                        // echo " | Success: " . $this->db->affected_rows() . '<br>';
+                        $total++;
+                    }else{
+                        echo " | Error: " . $this->db->error() . '<br>';
+                    }
+                }
+
+            } // if(isset($value->geo)){
 
         } // foreach($result_obj->statuses as $key => $value){
 
@@ -304,7 +306,7 @@ class Site_model extends CI_Model{
         $this->config->load('instagram_api', TRUE);
         $client_id = $this->config->item('instagram_client_id', 'instagram_api');
 
-        $hashtag = 'cometogether';
+        $hashtag = 'ourmoment';
         $query = array(
             'client_id' => $client_id,
             'count' => '33'
