@@ -129,7 +129,6 @@ class Site_model extends CI_Model{
 
     }
 
-
     function get_tweets($latitude, $longitude, $distance){
 
         // load twitter library
@@ -300,7 +299,6 @@ class Site_model extends CI_Model{
 
     }
 
-
     function get_instagram(){
 
         $this->config->load('instagram_api', TRUE);
@@ -311,6 +309,10 @@ class Site_model extends CI_Model{
             'client_id' => $client_id,
             'count' => '33'
         );
+
+        echo '<pre>';
+        var_dump($query);
+        echo '</pre>';
 
         // instagram will return a max of 33 results
         // if there are more than 33 results available, we will reload this page
@@ -328,7 +330,10 @@ class Site_model extends CI_Model{
 
         }else{
             // first run
-            $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
+            // $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '/media/recent?' . http_build_query($query);
+            $url = 'https://api.instagram.com/v1/tags/' . $hashtag . '?access_token=35e17432afee46cfa18c02a31d4405a1';
+
+            // 35e17432afee46cfa18c02a31d4405a1
         }
 
         try{
